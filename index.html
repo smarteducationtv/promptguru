@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>প্রম্পট গুরু – বাংলায় AI প্রম্পট ও টুল গাইড</title>
+<meta name="description" content="২৩টি জনপ্রিয় AI টুলের জন্য বাংলায় রেডি প্রম্পট, কোন কাজে কোন AI সেরা তার গাইড এবং প্রম্পট শেখার পাঠ। ChatGPT, Gemini, Claude, Midjourney সহ আরও অনেক টুল। কপি করে ব্যবহার করুন।">
+<meta name="author" content="Md. Shamim Hossain">
+<meta name="theme-color" content="#4F46E5">
+<meta property="og:title" content="প্রম্পট গুরু – বাংলায় AI প্রম্পট ও টুল গাইড">
+<meta property="og:description" content="বাংলাদেশিদের জন্য রেডি AI প্রম্পট, টুল গাইড ও প্রম্পট শেখার পাঠ। সার্চ করুন, ভয়েসে বলুন, কপি করুন।">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
+<style>
+:root{--bg:#F1F5F9;--card:#fff;--text:#0F172A;--muted:#64748B;--line:#E2E8F0;--brand:#4F46E5;--brand2:#EEF2FF;--green:#10B981;--amber:#D97706;--red:#DC2626;--soft:#F8FAFC;--shadow:0 1px 3px rgba(15,23,42,.08)}
+:root[data-theme=dark]{--bg:#0B1120;--card:#162033;--text:#E8EDF5;--muted:#93A1B8;--line:#26334B;--brand:#818CF8;--brand2:#242B52;--soft:#0F1829;--shadow:none}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{font-family:'Hind Siliguri',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+button{font:inherit;cursor:pointer;border:0;color:inherit}
+a{color:inherit}
+.top{position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);padding:calc(10px + env(safe-area-inset-top)) 16px 10px}
+.top-row{display:flex;align-items:center;gap:8px;max-width:760px;margin:0 auto}
+.logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#4F46E5,#10B981);display:grid;place-items:center;color:#fff;font-weight:700}
+.title{flex:1;font-weight:700;font-size:18px;line-height:1.1;min-width:0}
+.title small{display:block;font-weight:500;font-size:11px;color:var(--muted)}
+.icon-btn{width:38px;height:38px;border-radius:10px;background:var(--bg);display:grid;place-items:center;font-size:17px;flex:none}
+.icon-btn.add{background:var(--green);color:#fff;font-size:22px;line-height:1}
+.wrap{max-width:760px;margin:0 auto;padding:12px 14px}
+.hide{display:none!important}
+
+/* search */
+.searchbox{position:relative}
+.search{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 6px 4px 12px;box-shadow:var(--shadow)}
+.search:focus-within{border-color:var(--brand)}
+.search input{flex:1;border:0;background:transparent;outline:0;font:inherit;font-size:15px;color:var(--text);height:40px;min-width:0}
+.search input::placeholder{color:var(--muted)}
+.clear{display:none;background:transparent;font-size:16px;color:var(--muted);padding:6px}
+.mic{width:40px;height:40px;border-radius:12px;background:var(--brand);color:#fff;font-size:18px;display:grid;place-items:center;flex:none}
+.sugg{position:absolute;left:0;right:0;top:100%;margin-top:6px;background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 8px 24px rgba(15,23,42,.18);z-index:15;overflow:hidden;display:none;max-height:60vh;overflow-y:auto}
+.sugg.show{display:block}
+.sugg h6{margin:0;padding:8px 12px 2px;font-size:11px;color:var(--muted);font-weight:600}
+.sugg button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;background:transparent;padding:8px 12px;font-size:14px;border-top:1px solid transparent}
+.sugg button:hover,.sugg button:active{background:var(--soft)}
+.sugg .sub{font-size:11.5px;color:var(--muted);margin-left:auto;white-space:nowrap}
+.sugg .clr{color:var(--red);font-size:12px;justify-content:center}
+.pop{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0 0}
+.pop button{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:12.5px;color:var(--muted)}
+.pop .lab{font-size:12px;color:var(--muted);padding:4px 0}
+mark.hit{background:#FEF08A;color:#713F12;border-radius:3px;padding:0 1px}
+:root[data-theme=dark] mark.hit{background:#4D3F0A;color:#FDE68A}
+
+.rail{display:flex;gap:8px;overflow-x:auto;padding:10px 0 2px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.chip{flex:none;display:flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 12px 5px 6px;font-size:13px;font-weight:600;color:var(--muted)}
+.chip.cat{padding:5px 12px}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip.cat.on{background:var(--green);border-color:var(--green)}
+.badge{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700;flex:none}
+.badge.lg{width:36px;height:36px;font-size:14px}
+.count{font-size:12px;color:var(--muted);margin:8px 2px}
+
+/* cards */
+.card{background:var(--card);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.card-head{display:flex;align-items:center;gap:10px}
+.card-head .meta{flex:1;min-width:0}
+.tool-name{font-size:12px;font-weight:700}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:2px}
+.tag{font-size:11px;font-weight:600;border-radius:6px;padding:1px 8px;background:var(--brand2);color:var(--brand)}
+.tag.m{background:#FEF3C7;color:#92400E}
+.tag.g{background:#D1FAE5;color:#065F46}
+.tag.a{background:#FEF3C7;color:#92400E}
+.tag.r{background:#FEE2E2;color:#991B1B}
+:root[data-theme=dark] .tag.m,:root[data-theme=dark] .tag.a{background:#3A2F12;color:#FCD34D}
+:root[data-theme=dark] .tag.g{background:#0F3B2E;color:#6EE7B7}
+:root[data-theme=dark] .tag.r{background:#3F1717;color:#FCA5A5}
+.fav{background:transparent;font-size:22px;color:var(--muted);padding:4px}
+.fav.on{color:#F59E0B}
+.card h3{margin:10px 0 2px;font-size:16px;line-height:1.35}
+.when{font-size:12.5px;color:var(--muted);margin:0 0 8px}
+.prompt{background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:10px;font-size:13px;line-height:1.55;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;max-height:150px;overflow:hidden}
+.prompt.open{max-height:none}
+.prompt mark{background:#FEF3C7;color:#92400E;border-radius:4px;padding:0 2px}
+:root[data-theme=dark] .prompt mark{background:#3A2F12;color:#FCD34D}
+.more{background:transparent;color:var(--brand);font-size:12.5px;font-weight:600;padding:4px 0}
+.guide{font-size:12.5px;color:var(--amber);margin:6px 0 10px;font-style:italic}
+.actions{display:flex;gap:8px}
+.btn{flex:1;border-radius:11px;padding:9px 12px;font-weight:600;font-size:14px;background:var(--brand);color:#fff;text-align:center;text-decoration:none;display:block}
+.btn.ghost{flex:none;background:var(--bg);color:var(--text);padding:9px 14px}
+.btn.green{background:var(--green)}
+.btn.red{background:transparent;color:var(--red);flex:none;padding:9px 12px}
+.empty{text-align:center;color:var(--muted);padding:36px 10px}
+.empty b{display:block;font-size:30px}
+.daily{background:linear-gradient(135deg,#4F46E5,#7C3AED);color:#fff;border:0}
+.daily .tag{background:rgba(255,255,255,.2);color:#fff}
+.daily h3{color:#fff}
+.daily .when{color:#E0E7FF}
+.daily .prompt{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);color:#fff}
+.daily .prompt mark{background:rgba(255,255,255,.25);color:#fff}
+.daily .btn{background:#fff;color:#4F46E5}
+.sec{font-size:15px;font-weight:700;margin:16px 2px 8px}
+.hint{font-size:12.5px;color:var(--muted);margin:0 2px 10px;line-height:1.5}
+
+/* guide */
+.task{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;margin-bottom:8px;border-radius:12px;background:var(--card);border:1px solid var(--line);width:100%;text-align:left}
+.task b{display:block;font-size:14px}
+.task span{font-size:12.5px;color:var(--muted);line-height:1.45}
+.steps{margin:8px 0 10px;padding-left:20px;font-size:13px;line-height:1.55}
+.kv{font-size:13px;line-height:1.5;margin:4px 0}
+.kv b{color:var(--muted);font-weight:600}
+.news a{color:var(--brand);font-size:12.5px;font-weight:600}
+.news h4{margin:0 0 4px;font-size:14.5px}
+.news p{margin:0 0 6px;font-size:13px;line-height:1.55;color:var(--text)}
+.news small{color:var(--muted);font-size:11.5px}
+
+/* learn */
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:6px 0 4px}
+.bar i{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+.lesson-h{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:transparent;padding:0}
+.lesson-h .num{width:30px;height:30px;border-radius:50%;background:var(--brand2);color:var(--brand);display:grid;place-items:center;font-weight:700;flex:none}
+.lesson-h.done .num{background:var(--green);color:#fff}
+.lesson-h b{flex:1;font-size:15px}
+.lesson-b{margin-top:10px}
+.lesson-b ul{padding-left:20px;margin:6px 0;font-size:13.5px;line-height:1.6}
+.ex{margin:8px 0}
+
+/* forms */
+label.f{display:block;font-weight:700;font-size:13.5px;margin:14px 0 6px}
+select,input.in,textarea.in{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;font:inherit;font-size:14.5px;padding:11px}
+textarea.in{min-height:110px;resize:vertical}
+.row{display:flex;gap:8px;align-items:flex-start}
+.note{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.5}
+.out{margin-top:14px}
+
+/* about */
+.about{text-align:center;margin-top:18px;padding:16px}
+.about p{margin:4px 0;font-size:13px;color:var(--muted)}
+.about h5{margin:0;font-size:15px}
+.follow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.follow a{display:flex;align-items:center;gap:6px;color:#fff;text-decoration:none;font-size:13px;font-weight:600;padding:7px 14px;border-radius:999px}
+.foot{text-align:center;font-size:11.5px;color:var(--muted);padding:10px 14px 0;line-height:1.5}
+
+nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:transparent;padding:8px 0 7px;font-size:11px;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:1px}
+nav button span{font-size:19px}
+nav button.on{color:var(--brand)}
+.toast{position:fixed;left:50%;bottom:calc(94px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:#0F172A;color:#fff;padding:9px 16px;border-radius:999px;font-size:13.5px;opacity:0;pointer-events:none;transition:.25s;z-index:60;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.scrim{position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:40;display:none}
+.scrim.show{display:block}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--card);border-radius:22px 22px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .28s;max-width:760px;margin:0 auto;max-height:92vh;overflow-y:auto}
+.sheet.show{transform:none}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 12px}
+.sheet h4{margin:0 0 4px;text-align:center;font-size:16px}
+.status{text-align:center;font-size:12.5px;color:var(--muted);margin-bottom:8px;min-height:18px}
+.seg{display:flex;gap:6px;justify-content:center;margin-bottom:6px}
+.seg button{background:var(--bg);border-radius:999px;padding:4px 14px;font-size:13px;font-weight:600;color:var(--muted)}
+.seg button.on{background:var(--brand);color:#fff}
+.big-mic{width:68px;height:68px;border-radius:50%;margin:6px auto 12px;display:grid;place-items:center;font-size:28px;background:var(--brand);color:#fff}
+.big-mic.live{background:#EF4444;animation:pulse 1.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(239,68,68,.5)}100%{box-shadow:0 0 0 22px rgba(239,68,68,0)}}
+.sheet textarea.v{width:100%;min-height:84px;border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--text);font:inherit;font-size:15px;padding:10px;resize:vertical}
+.vtips{font-size:11.5px;color:var(--muted);text-align:center;margin-top:6px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-row">
+    <div class="logo">✨</div>
+    <div class="title">প্রম্পট গুরু<small>বাংলায় রেডি AI প্রম্পট ও গাইড</small></div>
+    <button class="icon-btn add" id="addBtn" aria-label="নিজের প্রম্পট যোগ করুন">+</button>
+    <button class="icon-btn" id="themeBtn" aria-label="থিম বদলান">🌙</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HOME / FAV -->
+  <section id="viewList">
+    <div class="searchbox">
+      <div class="search">
+        <span>🔍</span>
+        <input id="q" type="search" placeholder="প্রম্পট, টুল বা কাজ খুঁজুন… (যেমন: সিভি, ছবি, Claude)" autocomplete="off" enterkeyhint="search">
+        <button class="clear" id="clearQ" aria-label="মুছুন">✕</button>
+        <button class="mic" id="micMain" aria-label="ভয়েসে সার্চ">🎤</button>
+      </div>
+      <div class="sugg" id="sugg"></div>
+    </div>
+    <div class="pop" id="pop"></div>
+    <div class="rail" id="toolRail"></div>
+    <div class="rail" id="catRail"></div>
+    <div id="dailyBox"></div>
+    <div class="count" id="count"></div>
+    <div id="list"></div>
+  </section>
+
+  <!-- TOOLS GUIDE -->
+  <section id="viewTools" class="hide">
+    <div class="sec" style="margin-top:4px">🧭 কোন কাজে কোন AI?</div>
+    <div id="taskList"></div>
+    <div class="sec">🛠️ সব টুলের গাইড</div>
+    <div class="rail" id="freeRail" style="padding-top:0"></div>
+    <div id="guideList"></div>
+    <div class="sec">📰 সাম্প্রতিক আপডেট</div>
+    <p class="hint">তথ্যগুলো ইন্টারনেট থেকে যাচাই করা, তবে দাম ও ফ্রি লিমিট প্রায়ই বদলায়। সিদ্ধান্তের আগে অফিসিয়াল সাইট দেখে নিন।</p>
+    <div id="newsList"></div>
+  </section>
+
+  <!-- LEARN -->
+  <section id="viewLearn" class="hide">
+    <div class="sec" style="margin-top:4px">🎓 প্রম্পট লেখা শিখুন</div>
+    <div class="card" style="padding:12px 14px">
+      <div style="font-size:13px"><b id="progText"></b></div>
+      <div class="bar"><i id="progBar"></i></div>
+    </div>
+    <div id="lessonList"></div>
+  </section>
+
+  <!-- GENERATOR -->
+  <section id="viewGen" class="hide">
+    <label class="f" style="margin-top:4px">🎯 কী ধরনের প্রম্পট চান?</label>
+    <select id="genCat"></select>
+    <label class="f">✍️ আপনার চাহিদা লিখুন বা বলুন</label>
+    <div class="row">
+      <textarea class="in" id="genReq" placeholder="যেমন: ফ্রন্টএন্ড ডেভেলপারের জন্য এক পৃষ্ঠার সিভি, ২ বছরের অভিজ্ঞতা…"></textarea>
+      <button class="mic" id="micGen" aria-label="ভয়েসে বলুন">🎤</button>
+    </div>
+    <div class="actions" style="margin-top:12px"><button class="btn" id="genBtn">🚀 মাস্টার প্রম্পট তৈরি করুন</button></div>
+    <div class="out hide" id="genOut">
+      <div class="card">
+        <div class="tag m" style="display:inline-block;margin-bottom:8px">✨ আপনার প্রম্পট</div>
+        <div class="prompt open" id="genText"></div>
+        <div class="actions" style="margin-top:10px">
+          <button class="btn green" id="genCopy">📋 কপি</button>
+          <button class="btn" id="genGpt">ChatGPT-তে খুলুন</button>
+        </div>
+      </div>
+    </div>
+    <p class="note">এই জেনারেটর নির্বাচিত ক্যাটাগরির মাস্টার কাঠামোর সাথে আপনার চাহিদা জুড়ে দেয়। তৈরি প্রম্পট যেকোনো AI টুলে পেস্ট করে ব্যবহার করুন।</p>
+  </section>
+
+  <div class="card about" id="about"></div>
+  <p class="foot">এটি কোনো AI কোম্পানির অফিসিয়াল অ্যাপ নয়। ChatGPT, Gemini, Claude, Midjourney ইত্যাদি নাম সংশ্লিষ্ট কোম্পানির ট্রেডমার্ক। AI-এর উত্তর ভুল হতে পারে, গুরুত্বপূর্ণ তথ্য যাচাই করুন।</p>
+</main>
+
+<nav>
+  <button data-tab="home" class="on"><span>🏠</span>প্রম্পট</button>
+  <button data-tab="tools"><span>🧭</span>টুল গাইড</button>
+  <button data-tab="learn"><span>🎓</span>শিখুন</button>
+  <button data-tab="gen"><span>⚡</span>জেনারেটর</button>
+  <button data-tab="fav"><span>⭐</span>আমার</button>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<!-- voice sheet -->
+<div class="sheet" id="voiceSheet" role="dialog" aria-label="ভয়েস ইনপুট">
+  <div class="grab"></div>
+  <h4>🎤 ভয়েসে বলুন</h4>
+  <div class="seg" id="vLang"><button data-l="bn-BD" class="on">বাংলা</button><button data-l="en-US">English</button></div>
+  <div class="status" id="vStatus">মাইক চাপুন এবং বলুন</div>
+  <button class="big-mic" id="vMic" aria-label="মাইক">🎤</button>
+  <textarea class="v" id="vText" placeholder="আপনার কথা এখানে লেখা হবে। চাইলে ঠিক করে নিতে পারবেন।"></textarea>
+  <div class="actions" style="margin-top:12px">
+    <button class="btn ghost" id="vCancel">বাতিল</button>
+    <button class="btn ghost" id="vClear">🗑 মুছুন</button>
+    <button class="btn" id="vSend">✔ পাঠান</button>
+  </div>
+  <div class="vtips">বলা শেষ হলে ✔ পাঠান চাপুন। লেখা ভুল হলে নিজে ঠিক করে নিন।</div>
+</div>
+
+<!-- add own prompt sheet -->
+<div class="sheet" id="addSheet" role="dialog" aria-label="নিজের প্রম্পট">
+  <div class="grab"></div>
+  <h4>➕ নিজের প্রম্পট সেভ করুন</h4>
+  <label class="f">নাম</label><input class="in" id="aTitle" placeholder="প্রম্পটের নাম">
+  <label class="f">কোন টুলের জন্য</label><select id="aTool"></select>
+  <label class="f">ক্যাটাগরি</label><select id="aCat"></select>
+  <label class="f">প্রম্পট</label><textarea class="in" id="aText" placeholder="প্রম্পট পেস্ট করুন…"></textarea>
+  <div class="actions" style="margin-top:12px"><button class="btn ghost" id="aCancel">বাতিল</button><button class="btn" id="aSave">💾 সেভ করুন</button></div>
+  <p class="note">আপনার প্রম্পট শুধু এই ডিভাইসের ব্রাউজারে সেভ থাকে। ব্রাউজারের ডেটা মুছলে এগুলোও মুছে যাবে।</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const DATA = {"version":2,"tools":[{"id":"all","name":"ইউনিভার্সাল","nameEn":"Universal","color":"#4F46E5","letter":"★"},{"id":"chatgpt","name":"ChatGPT","color":"#10A37F","letter":"C"},{"id":"gemini","name":"Gemini","color":"#4285F4","letter":"G"},{"id":"claude","name":"Claude","color":"#D97757","letter":"Cl"},{"id":"deepseek","name":"DeepSeek","color":"#4D6BFE","letter":"D"},{"id":"perplexity","name":"Perplexity","color":"#20808D","letter":"P"},{"id":"copilot","name":"Copilot","color":"#0F6CBD","letter":"Co"},{"id":"grok","name":"Grok","color":"#111827","letter":"Gk"},{"id":"metaai","name":"Meta AI","color":"#0866FF","letter":"Me"},{"id":"midjourney","name":"Midjourney","color":"#1F2937","letter":"M"},{"id":"leonardo","name":"Leonardo","color":"#7C3AED","letter":"L"},{"id":"ideogram","name":"Ideogram","color":"#E11D48","letter":"I"},{"id":"firefly","name":"Adobe Firefly","color":"#DC2626","letter":"Ff"},{"id":"canva","name":"Canva AI","color":"#0891B2","letter":"Cv"},{"id":"runway","name":"Runway","color":"#0EA5E9","letter":"R"},{"id":"kling","name":"Kling","color":"#6D28D9","letter":"Kl"},{"id":"heygen","name":"HeyGen","color":"#D97706","letter":"Hg"},{"id":"elevenlabs","name":"ElevenLabs","color":"#374151","letter":"E"},{"id":"suno","name":"Suno","color":"#EA580C","letter":"Su"},{"id":"notion","name":"Notion AI","color":"#475569","letter":"N"},{"id":"jasper","name":"Jasper","color":"#DB2777","letter":"J"},{"id":"characterai","name":"Character.AI","color":"#6366F1","letter":"Ca"},{"id":"huggingface","name":"Hugging Face","color":"#CA8A04","letter":"HF"},{"id":"gamma","name":"Gamma","color":"#8B5CF6","letter":"Gm"}],"categories":[{"id":"master","bn":"মাস্টার প্রম্পট","en":"Master","icon":"⭐"},{"id":"image","bn":"ছবি","en":"Image","icon":"🖼️"},{"id":"video","bn":"ভিডিও","en":"Video","icon":"🎬"},{"id":"cv","bn":"সিভি ও রেজুমে","en":"CV & Resume","icon":"📄"},{"id":"email","bn":"ইমেইল ও মেসেজ","en":"Email","icon":"✉️"},{"id":"coding","bn":"কোডিং","en":"Coding","icon":"💻"},{"id":"study","bn":"পড়াশোনা","en":"Study","icon":"📚"},{"id":"business","bn":"ব্যবসা ও মার্কেটিং","en":"Business","icon":"📈"},{"id":"social","bn":"সোশ্যাল মিডিয়া","en":"Social Media","icon":"📱"},{"id":"freelance","bn":"ফ্রিল্যান্সিং","en":"Freelancing","icon":"💼"},{"id":"audio","bn":"ভয়েস ও অডিও","en":"Audio","icon":"🎙️"},{"id":"research","bn":"রিসার্চ","en":"Research","icon":"🔍"},{"id":"writing","bn":"লেখালেখি","en":"Writing","icon":"✍️"},{"id":"translate","bn":"অনুবাদ","en":"Translation","icon":"🌐"}],"prompts":[{"id":"u_master_1","tool":"all","cat":"master","type":"master","titleBn":"ইউনিভার্সাল মাস্টার প্রম্পট (সব AI-তে চলে)","whenBn":"যেকোনো কাজে, যেকোনো AI টুলে","prompt":"Act as an expert [ROLE].\nTask: [WHAT YOU WANT DONE]\nContext: [BACKGROUND / DETAILS]\nAudience: [WHO WILL READ OR USE THIS]\nFormat: [LIST / TABLE / EMAIL / STEPS / ETC.]\nTone: [FORMAL / FRIENDLY / SIMPLE]\nLength: [WORD COUNT OR SIZE]\nConstraints: [WHAT TO AVOID]\nIf anything is unclear, ask me up to 3 questions before answering.","guideBn":"[ ] এর ভেতরের অংশগুলো নিজের তথ্য দিয়ে বদলান। এটাই সব প্রম্পটের মূল কাঠামো।"},{"id":"u_master_2","tool":"all","cat":"master","type":"master","titleBn":"প্রম্পট ইমপ্রুভার: সাধারণ লেখাকে প্রফেশনাল প্রম্পট বানান","whenBn":"আপনার প্রম্পট দুর্বল মনে হলে","prompt":"You are a prompt engineering expert. Rewrite my rough request below into a clear, detailed, professional prompt that includes role, task, context, format, tone and constraints. Then show the improved prompt only.\n\nMy rough request: [PASTE YOUR REQUEST]","guideBn":"নিজের সাধারণ লাইনটি পেস্ট করুন। AI সেটাকে ভালো প্রম্পটে বদলে দেবে।"},{"id":"u_master_3","tool":"all","cat":"master","type":"master","titleBn":"ধাপে ধাপে শেখানোর মাস্টার প্রম্পট","whenBn":"নতুন কিছু শিখতে চাইলে","prompt":"Teach me [TOPIC] as if I am a complete beginner. Use simple words and real-life examples. Break it into numbered steps. After each step, give me a small exercise. At the end, give me a 5-question quiz with answers.","guideBn":"[TOPIC] এর জায়গায় শেখার বিষয় লিখুন। বাংলায় উত্তর চাইলে শেষে 'Answer in Bangla' যোগ করুন।"},{"id":"u_master_4","tool":"all","cat":"master","type":"master","titleBn":"বাংলায় উত্তর পাওয়ার মাস্টার প্রম্পট","whenBn":"AI ইংরেজিতে উত্তর দিলে","prompt":"From now on, reply in simple, natural Bangla (Bengali). Keep technical words in English where needed. Task: [YOUR TASK]","guideBn":"প্রম্পটের শুরুতে বা শেষে এটি যোগ করলে উত্তর বাংলায় আসবে।"},{"id":"gpt_img_m","tool":"chatgpt","cat":"image","type":"master","titleBn":"ChatGPT ছবির মাস্টার প্রম্পট","whenBn":"যেকোনো ছবি বানাতে","prompt":"Create an image of [SUBJECT].\nStyle: [PHOTOREALISTIC / CARTOON / 3D / OIL PAINTING]\nSetting: [LOCATION / BACKGROUND]\nLighting: [SOFT / GOLDEN HOUR / STUDIO]\nCamera: [CLOSE-UP / WIDE SHOT / TOP VIEW]\nMood: [CALM / DRAMATIC / JOYFUL]\nAspect ratio: [SQUARE / 16:9 / 9:16]","guideBn":"ChatGPT-তে সরাসরি ছবি বানানোর অপশন থাকলে এটি লিখুন।"},{"id":"gpt_img_1","tool":"chatgpt","cat":"image","type":"specific","titleBn":"নিজের ছবিকে স্টুডিও লুক দিন","whenBn":"ছবির ব্যাকগ্রাউন্ড বদলে প্রফেশনাল স্টুডিও লুক চাইলে","prompt":"Using the uploaded photo, keep the person's face and features exactly the same. Replace the background with a clean professional studio backdrop in soft grey, add soft studio lighting, and enhance sharpness naturally. Do not change the face.","guideBn":"ছবি আপলোড করে তারপর এই প্রম্পট দিন।"},{"id":"gpt_img_2","tool":"chatgpt","cat":"image","type":"specific","titleBn":"ক্লোজ-আপ পোর্ট্রেট","whenBn":"মুখের ক্লোজ-আপ ছবি চাইলে","prompt":"A close-up portrait of [SUBJECT], sharp focus on the eyes, shallow depth of field, soft natural window light, detailed skin texture, blurred neutral background, high resolution photograph.","guideBn":"[SUBJECT] এর জায়গায় বর্ণনা দিন, যেমন: ৩০ বছরের এক নারী।"},{"id":"gpt_img_3","tool":"chatgpt","cat":"image","type":"specific","titleBn":"সিনেমাটিক ছবি","whenBn":"সিনেমার দৃশ্যের মতো ছবি চাইলে","prompt":"A cinematic wide shot of [SCENE], dramatic lighting, rich colour grading in teal and orange, film grain, shallow depth of field, widescreen 16:9 composition.","guideBn":"দৃশ্য যত বিস্তারিত লিখবেন, ছবি তত ভালো হবে।"},{"id":"gpt_img_4","tool":"chatgpt","cat":"image","type":"specific","titleBn":"কার্টুন বা ইলাস্ট্রেশন স্টাইল","whenBn":"কার্টুন বা আঁকা ছবির মতো চাইলে","prompt":"A colourful flat-design illustration of [SUBJECT], friendly rounded shapes, bold outlines, bright pastel colours, simple background, suitable for a children's book or social media post.","guideBn":"বাচ্চাদের বই, পোস্ট বা প্রেজেন্টেশনের জন্য ভালো।"},{"id":"gpt_img_5","tool":"chatgpt","cat":"image","type":"specific","titleBn":"পণ্যের প্রফেশনাল ছবি","whenBn":"অনলাইনে পণ্য বিক্রির ছবি চাইলে","prompt":"A professional e-commerce product photo of [PRODUCT] on a clean white background, soft shadow underneath, sharp details, even studio lighting, centred composition.","guideBn":"পণ্যের ছবি আপলোড করে বললে আরও ভালো ফল পাবেন।"},{"id":"gpt_vid_1","tool":"chatgpt","cat":"video","type":"master","titleBn":"ভাইরাল রিলস স্ক্রিপ্ট ও দৃশ্য","whenBn":"৩০ সেকেন্ডের রিলস বা শর্টস বানাতে","prompt":"Write a 30-second viral reel script about [TOPIC] for [PLATFORM]. Give: a 3-second hook, scene-by-scene visuals, on-screen text, voiceover lines, and a call to action. Keep it fast-paced and simple.","guideBn":"ফেসবুক, ইউটিউব শর্টস বা ইনস্টাগ্রামের জন্য কাজে লাগবে।"},{"id":"gpt_vid_2","tool":"chatgpt","cat":"video","type":"specific","titleBn":"ইউটিউব ভিডিওর আইডিয়া ও টাইটেল","whenBn":"নতুন ভিডিওর বিষয় খুঁজছেন","prompt":"Give me 10 YouTube video ideas for a channel about [NICHE]. For each, write a click-worthy title, a thumbnail idea and a one-line hook. Focus on topics with low competition.","guideBn":"নিজের চ্যানেলের বিষয় [NICHE] এর জায়গায় লিখুন।"},{"id":"gpt_cv_m","tool":"chatgpt","cat":"cv","type":"master","titleBn":"ATS-ফ্রেন্ডলি সিভি তৈরি","whenBn":"চাকরির জন্য সিভি বানাতে","prompt":"Act as a professional resume writer and HR recruiter. Create an ATS-friendly resume for the role of [JOB TITLE]. My details: [EXPERIENCE, EDUCATION, SKILLS]. Include a professional summary, skills section, experience with quantified achievements, and education. Use plain formatting without tables or graphics.","guideBn":"নিজের অভিজ্ঞতা, শিক্ষা ও দক্ষতা লিখে দিন। কোনো তথ্য বানিয়ে লিখতে নিষেধ করতে 'Do not invent facts' যোগ করুন।"},{"id":"gpt_cv_1","tool":"chatgpt","cat":"cv","type":"specific","titleBn":"কভার লেটার","whenBn":"নির্দিষ্ট চাকরির জন্য আবেদনপত্র লিখতে","prompt":"Write a one-page cover letter for the position of [JOB TITLE] at [COMPANY]. Match it to this job description: [PASTE JD]. Highlight my relevant experience: [YOUR EXPERIENCE]. Keep the tone confident and professional.","guideBn":"চাকরির বিজ্ঞপ্তি পেস্ট করলে লেটার সেই অনুযায়ী হবে।"},{"id":"gpt_cv_2","tool":"chatgpt","cat":"cv","type":"specific","titleBn":"ইন্টারভিউ প্রস্তুতি","whenBn":"ইন্টারভিউয়ের আগে অনুশীলন করতে","prompt":"Act as an interviewer for the role of [JOB TITLE]. Ask me one question at a time, wait for my answer, then give feedback and a better sample answer. Start with the 10 most common questions for this role.","guideBn":"এক এক করে প্রশ্ন করবে, আপনি উত্তর দিলে মতামত দেবে।"},{"id":"gpt_cv_3","tool":"chatgpt","cat":"cv","type":"specific","titleBn":"LinkedIn প্রোফাইল ও বায়ো","whenBn":"LinkedIn প্রোফাইল সুন্দর করতে","prompt":"Write a LinkedIn headline (under 120 characters) and an About section (150 words) for a [PROFESSION] with skills in [SKILLS]. Make it keyword-rich, friendly and professional.","guideBn":"রিক্রুটাররা কিওয়ার্ড দিয়ে খোঁজে, তাই দক্ষতার শব্দগুলো সঠিকভাবে দিন।"},{"id":"gpt_email_1","tool":"chatgpt","cat":"email","type":"master","titleBn":"প্রফেশনাল ইমেইল লেখা","whenBn":"অফিস বা ব্যবসার ইমেইল লিখতে","prompt":"Write a polite, professional email to [RECIPIENT] about [TOPIC]. Include a clear subject line, a short greeting, the main message in 2-3 short paragraphs, and a closing with next steps. Tone: [FORMAL / FRIENDLY].","guideBn":"ইমেইলের বিষয় ও কাকে লিখছেন তা বললেই হবে।"},{"id":"gpt_email_2","tool":"chatgpt","cat":"email","type":"specific","titleBn":"বেতন বৃদ্ধি বা প্রমোশনের আবেদন","whenBn":"বস বা এইচআরকে বেতন বাড়ানোর কথা বলতে","prompt":"Draft a respectful email to my manager requesting a salary review. Highlight these achievements: [ACHIEVEMENTS]. Mention my [DURATION] with the company, keep it confident but polite, and suggest a meeting.","guideBn":"সাফল্যগুলো সংখ্যাসহ লিখলে ভালো।"},{"id":"gpt_email_3","tool":"chatgpt","cat":"email","type":"specific","titleBn":"ক্লায়েন্টের মেসেজের উত্তর","whenBn":"ক্লায়েন্টকে দ্রুত ভদ্রভাবে উত্তর দিতে","prompt":"Write a polite reply to this client message: [PASTE MESSAGE]. My answer should be: [YOUR POINTS]. Keep it short, clear and professional.","guideBn":"ক্লায়েন্টের মেসেজ পেস্ট করে আপনার মূল কথা দিন।"},{"id":"gpt_study_1","tool":"chatgpt","cat":"study","type":"master","titleBn":"পরীক্ষার প্রস্তুতি ও স্টাডি প্ল্যান","whenBn":"পরীক্ষার আগে পড়ার রুটিন চাইলে","prompt":"Create a [NUMBER]-day study plan for my [EXAM] exam. Subjects: [SUBJECTS]. I can study [HOURS] hours per day. Include daily topics, short breaks, revision days and a final mock test day.","guideBn":"পরীক্ষার তারিখ ও প্রতিদিন কত ঘণ্টা পড়তে পারবেন তা লিখুন।"},{"id":"gpt_study_2","tool":"chatgpt","cat":"study","type":"specific","titleBn":"কঠিন বিষয় সহজে বোঝা","whenBn":"কোনো টপিক বুঝতে কষ্ট হলে","prompt":"Explain [TOPIC] in very simple words, like I am 12 years old. Use an everyday example from Bangladesh, then summarise in 5 bullet points.","guideBn":"বাংলাদেশের পরিচিত উদাহরণ চাইলে বোঝা সহজ হয়।"},{"id":"gpt_biz_1","tool":"chatgpt","cat":"business","type":"master","titleBn":"ব্যবসার পরিকল্পনা","whenBn":"নতুন ব্যবসা শুরুর আগে","prompt":"Create a simple business plan for [BUSINESS IDEA] in [CITY/COUNTRY]. Include target customers, startup cost estimate, pricing, marketing plan, risks and a 3-month action plan.","guideBn":"ফলাফল অনুমানভিত্তিক, বাস্তব বাজার যাচাই করে নিন।"},{"id":"gpt_biz_2","tool":"chatgpt","cat":"business","type":"specific","titleBn":"ফেসবুক বিজ্ঞাপনের লেখা","whenBn":"পণ্য বা সেবা বিক্রির বিজ্ঞাপন লিখতে","prompt":"Write 3 Facebook ad copies for [PRODUCT/SERVICE]. Target audience: [AUDIENCE]. Each should have a strong hook, 2 benefits, social proof placeholder and a clear call to action. Keep each under 80 words.","guideBn":"৩টি আলাদা ভার্সন দেবে, তুলনা করে বেছে নিন।"},{"id":"gpt_social_1","tool":"chatgpt","cat":"social","type":"master","titleBn":"৩০ দিনের কনটেন্ট ক্যালেন্ডার","whenBn":"পেজ বা চ্যানেলের জন্য মাসের পোস্ট প্ল্যান করতে","prompt":"Create a 30-day social media content calendar for a [NICHE] page on [PLATFORM]. For each day give: post idea, format (reel/photo/text), caption and 5 hashtags. Mix educational, entertaining and promotional posts.","guideBn":"টেবিল আকারে চাইলে শেষে 'Present as a table' লিখুন।"},{"id":"gpt_free_1","tool":"chatgpt","cat":"freelance","type":"master","titleBn":"Upwork/Fiverr প্রোফাইল ও গিগ বর্ণনা","whenBn":"ফ্রিল্যান্সিং প্রোফাইল বা গিগ সাজাতে","prompt":"Write a compelling [UPWORK PROFILE / FIVERR GIG DESCRIPTION] for a freelancer offering [SERVICE]. Include a strong opening line, my skills: [SKILLS], what makes me different, a simple process, and a call to action. Keep it under 250 words.","guideBn":"প্ল্যাটফর্ম অনুযায়ী একটি বেছে নিন।"},{"id":"gpt_free_2","tool":"chatgpt","cat":"freelance","type":"specific","titleBn":"Upwork প্রপোজাল (বিডের লেখা)","whenBn":"কোনো জবে আবেদন করার সময়","prompt":"Write a short Upwork proposal (under 150 words) for this job: [PASTE JOB POST]. Start by addressing the client's exact problem, show one relevant past result: [YOUR RESULT], and end with a question to start a conversation.","guideBn":"জবের বিবরণ পেস্ট করুন। প্রতিটি জবের জন্য আলাদা প্রপোজাল বানান।"},{"id":"gpt_write_1","tool":"chatgpt","cat":"writing","type":"master","titleBn":"এসইও ব্লগ আর্টিকেল","whenBn":"ওয়েবসাইটের জন্য আর্টিকেল লিখতে","prompt":"Write an SEO-optimised blog article on [TOPIC] targeting the keyword '[KEYWORD]'. Include a catchy H1, meta description (under 155 characters), H2/H3 headings, short paragraphs, a FAQ section and a conclusion. Length: [WORDS] words.","guideBn":"কিওয়ার্ড ও শব্দসংখ্যা নির্ধারণ করে দিন।"},{"id":"gpt_code_1","tool":"chatgpt","cat":"coding","type":"master","titleBn":"কোড লেখা ও এরর ঠিক করা","whenBn":"প্রোগ্রামিং সমস্যায় আটকে গেলে","prompt":"Act as a senior [LANGUAGE] developer. Here is my code and the error: [PASTE CODE AND ERROR]. Explain the cause in simple words, give the corrected full code, and list any other problems you notice.","guideBn":"কোডের সাথে এরর মেসেজ দিলে সমাধান দ্রুত পাবেন। পাসওয়ার্ড বা API কী মুছে পেস্ট করুন।"},{"id":"gem_res_1","tool":"gemini","cat":"research","type":"master","titleBn":"গভীর বিষয়ভিত্তিক রিসার্চ রিপোর্ট","whenBn":"কোনো বিষয়ে ভালোভাবে জানতে","prompt":"Research [TOPIC] in depth. Give me: a 5-bullet executive summary, key facts with dates, main viewpoints, pros and cons, and what is still uncertain. Mention sources I should verify.","guideBn":"তথ্য নিজে যাচাই করে নেবেন।"},{"id":"gem_img_1","tool":"gemini","cat":"image","type":"master","titleBn":"Gemini দিয়ে ছবি বানানো","whenBn":"Gemini-তে ছবি তৈরি করতে","prompt":"Generate an image of [SUBJECT] in [STYLE] style, [LIGHTING] lighting, [COMPOSITION] composition, with [COLOUR PALETTE] colours. Aspect ratio [RATIO]. No text in the image.","guideBn":"ছবিতে লেখা চাইলে 'No text' সরিয়ে লেখাটি নির্দিষ্ট করুন।"},{"id":"gem_study_1","tool":"gemini","cat":"study","type":"master","titleBn":"পিডিএফ বা নোট থেকে সারসংক্ষেপ ও প্রশ্ন","whenBn":"বই বা লেকচারের অংশ আপলোড করে পড়তে চাইলে","prompt":"From the attached document, give me: a one-page summary, the 10 most important points, 10 likely exam questions with answers, and simple definitions of difficult terms.","guideBn":"ফাইল আপলোড করে এই প্রম্পট দিন।"},{"id":"gem_social_1","tool":"gemini","cat":"social","type":"specific","titleBn":"ফেসবুক পোস্ট ও ক্যাপশন","whenBn":"আকর্ষণীয় পোস্ট লিখতে","prompt":"Write 5 engaging Facebook post captions about [TOPIC] in Bangla. Use a friendly tone, add relevant emojis and 3 hashtags for each.","guideBn":"বাংলা বা ইংরেজি যেকোনোটি চাইতে পারেন।"},{"id":"gem_trans_1","tool":"gemini","cat":"translate","type":"master","titleBn":"স্বাভাবিক বাংলা অনুবাদ","whenBn":"ইংরেজি লেখা সহজ বাংলায় বুঝতে","prompt":"Translate the following text into natural, simple Bangla, not word for word. Keep the meaning and tone. If any term has no good Bangla equivalent, keep it in English: [PASTE TEXT]","guideBn":"উল্টোটা করতে Bangla ও English অদলবদল করুন।"},{"id":"cld_write_1","tool":"claude","cat":"writing","type":"master","titleBn":"লেখা সম্পাদনা ও মান উন্নয়ন","whenBn":"নিজের লেখা পরিষ্কার ও আকর্ষণীয় করতে","prompt":"Edit the text below for clarity, flow and grammar. Keep my voice and meaning. Show the improved version first, then list the 5 biggest changes you made.\n\n[PASTE TEXT]","guideBn":"মূল সুর ঠিক রেখে লেখা ঝরঝরে করে দেবে।"},{"id":"cld_res_1","tool":"claude","cat":"research","type":"specific","titleBn":"দীর্ঘ ডকুমেন্টের বিশ্লেষণ","whenBn":"বড় রিপোর্ট বা চুক্তি বুঝতে","prompt":"Read the attached document carefully. Give me: a plain-language summary, the key decisions or obligations, risks or red flags, and 5 questions I should ask. Quote the exact lines for important points.","guideBn":"আইনি বিষয়ে চূড়ান্ত সিদ্ধান্তের আগে বিশেষজ্ঞের পরামর্শ নিন।"},{"id":"cld_code_1","tool":"claude","cat":"coding","type":"master","titleBn":"কোড রিভিউ ও রিফ্যাক্টর","whenBn":"কোড পরিষ্কার ও নিরাপদ করতে","prompt":"Review this [LANGUAGE] code like a senior engineer. Point out bugs, security issues, and performance problems. Then give a cleaner refactored version with short comments explaining the changes.\n\n[PASTE CODE]","guideBn":"প্রকল্পের ভেতরের গোপন তথ্য মুছে পেস্ট করুন।"},{"id":"cld_biz_1","tool":"claude","cat":"business","type":"specific","titleBn":"সিদ্ধান্ত নেওয়ার বিশ্লেষণ","whenBn":"দুটি পথের মধ্যে বাছাই করতে","prompt":"Help me decide between [OPTION A] and [OPTION B]. My goals are [GOALS]. Compare them on cost, risk, time and long-term benefit in a table, then give your recommendation and what would change it.","guideBn":"নিজের লক্ষ্যগুলো স্পষ্ট করে লিখুন।"},{"id":"ds_code_1","tool":"deepseek","cat":"coding","type":"master","titleBn":"কোড অপ্টিমাইজ ও বাগ ফিক্স","whenBn":"কোড ধীর বা ভুল করলে","prompt":"Review and optimise the following [LANGUAGE] code. Fix bugs, improve time complexity, and explain each change briefly.\n\n[PASTE CODE]","guideBn":"কোড পেস্ট করলে পরিবর্তনের কারণসহ উত্তর দেবে।"},{"id":"ds_code_2","tool":"deepseek","cat":"coding","type":"specific","titleBn":"অ্যান্ড্রয়েড (Kotlin) ফিচার কোড","whenBn":"অ্যান্ড্রয়েড অ্যাপে নতুন ফিচার যোগ করতে","prompt":"Write modular Kotlin code for an Android feature: [FEATURE]. Use modern practices (ViewModel, coroutines), handle errors properly, and explain where each file goes.","guideBn":"ফিচারের বিবরণ যত স্পষ্ট, কোড তত নির্ভুল।"},{"id":"ds_code_3","tool":"deepseek","cat":"coding","type":"specific","titleBn":"পাইথন স্ক্রিপ্ট দিয়ে কাজ অটোমেশন","whenBn":"বারবার করা কাজ স্বয়ংক্রিয় করতে","prompt":"Write a Python script that automates: [TASK]. Add comments, handle errors, and give instructions to install requirements and run it.","guideBn":"ফাইল রিনেম, এক্সেল প্রসেস ইত্যাদিতে কাজে লাগে।"},{"id":"prp_res_1","tool":"perplexity","cat":"research","type":"master","titleBn":"সূত্রসহ ফ্যাক্ট চেক","whenBn":"কোনো তথ্য সত্য কিনা যাচাই করতে","prompt":"Fact-check this claim: [CLAIM]. Tell me if it is true, false or partly true. Give the latest reliable sources with dates, and explain any context that changes the meaning.","guideBn":"উৎসের লিংকগুলো নিজে খুলে দেখুন।"},{"id":"prp_res_2","tool":"perplexity","cat":"research","type":"specific","titleBn":"বাজার ও প্রতিযোগী গবেষণা","whenBn":"ব্যবসার আগে বাজার বুঝতে","prompt":"Research the market for [PRODUCT/SERVICE] in [COUNTRY]. List top 5 competitors, their pricing, strengths and weaknesses, and current trends. Cite sources.","guideBn":"দেশ ও পণ্যের নাম নির্দিষ্ট করুন।"},{"id":"prp_study_1","tool":"perplexity","cat":"study","type":"specific","titleBn":"গবেষণার জন্য নির্ভরযোগ্য সূত্র খোঁজা","whenBn":"অ্যাসাইনমেন্ট বা থিসিসের রেফারেন্স খুঁজতে","prompt":"Find 8 reliable academic or official sources about [TOPIC] published in the last 5 years. For each, give the title, author, year, a 2-line summary and the link.","guideBn":"লিংক সত্যিই কাজ করে কিনা যাচাই করুন।"},{"id":"mj_img_m","tool":"midjourney","cat":"image","type":"master","titleBn":"Midjourney মাস্টার প্রম্পট","whenBn":"যেকোনো ছবির মূল কাঠামো","prompt":"[SUBJECT], [ACTION/POSE], [SETTING], [LIGHTING], [CAMERA/LENS], [MOOD], highly detailed --ar 16:9 --style raw --v 6","guideBn":"কমা দিয়ে আলাদা করে বর্ণনা দিন। --ar দিয়ে ছবির মাপ ঠিক হয়।"},{"id":"mj_img_1","tool":"midjourney","cat":"image","type":"specific","titleBn":"নদীর পার ও সূর্যাস্ত","whenBn":"প্রকৃতির সুন্দর ল্যান্ডস্কেপ চাইলে","prompt":"A realistic photo of [SUBJECT] on a green riverbank at sunset, calm water reflections, golden light, soft mist, shot on 35mm lens --ar 16:9 --style raw","guideBn":"বাংলার গ্রামের ছবির জন্য সুন্দর।"},{"id":"mj_img_2","tool":"midjourney","cat":"image","type":"specific","titleBn":"কুয়াশাচ্ছন্ন পাহাড় ও অ্যাডভেঞ্চার","whenBn":"পাহাড়ের নাটকীয় ছবি চাইলে","prompt":"Cinematic photo of [SUBJECT] standing before misty blue mountains at dawn, volumetric light, epic scale, ultra detailed --ar 16:9 --v 6","guideBn":"[SUBJECT] এর জায়গায় একজন ট্র্যাভেলার বা তাঁবু লিখতে পারেন।"},{"id":"mj_img_3","tool":"midjourney","cat":"image","type":"specific","titleBn":"পণ্যের লাক্সারি ছবি","whenBn":"বিজ্ঞাপনের জন্য পণ্যের ছবি চাইলে","prompt":"Luxury product photography of [PRODUCT] on a marble surface, soft studio lighting, subtle reflections, minimalist background, commercial advertising style --ar 4:5 --style raw","guideBn":"ইনস্টাগ্রাম পোস্টের জন্য 4:5 মাপ ভালো।"},{"id":"mj_img_4","tool":"midjourney","cat":"image","type":"specific","titleBn":"ফ্যান্টাসি ক্যারেক্টার আর্ট","whenBn":"গেম বা গল্পের চরিত্র আঁকতে","prompt":"Concept art of [CHARACTER DESCRIPTION], detailed costume, dynamic pose, dramatic lighting, painterly fantasy style, full body --ar 2:3 --v 6","guideBn":"নিজের কল্পিত চরিত্রের বর্ণনা দিন, পরিচিত কোনো চরিত্রের নাম নয়।"},{"id":"leo_img_1","tool":"leonardo","cat":"image","type":"master","titleBn":"৩ডি গেম অ্যাসেট ও ক্যারেক্টার","whenBn":"গেম আর্ট বা ৩ডি লুক চাইলে","prompt":"3D game character render of [CHARACTER], stylised proportions, detailed textures, soft rim lighting, neutral background, high-quality 3D render, 8k","guideBn":"চরিত্রের পোশাক ও রং স্পষ্ট করে লিখুন।"},{"id":"leo_img_2","tool":"leonardo","cat":"image","type":"specific","titleBn":"ইউটিউব থাম্বনেইল ব্যাকগ্রাউন্ড","whenBn":"থাম্বনেইলের জন্য আকর্ষণীয় ব্যাকগ্রাউন্ড চাইলে","prompt":"Bold, high-contrast YouTube thumbnail background about [TOPIC], vibrant colours, empty space on the left for text, dramatic glow, 16:9","guideBn":"লেখার জন্য ফাঁকা জায়গা রাখতে বলা হয়েছে।"},{"id":"sora_vid_m","tool":"runway","cat":"video","type":"master","titleBn":"রানওয়ে/ভিডিও জেনারেটরের মাস্টার প্রম্পট","whenBn":"যেকোনো AI ভিডিও টুলের জন্য","prompt":"[SHOT TYPE] of [SUBJECT] [DOING WHAT] in [LOCATION], [TIME OF DAY], [CAMERA MOVEMENT], [LIGHTING], [MOOD], realistic, 4K, smooth motion. Duration: [5-10] seconds.","guideBn":"একটি প্রম্পটে একটি দৃশ্যই বর্ণনা করুন, ফল ভালো হয়।"},{"id":"sora_vid_1","tool":"runway","cat":"video","type":"specific","titleBn":"ড্রোন শটে শহরের দৃশ্য","whenBn":"আকাশ থেকে শহর বা এলাকার ভিডিও চাইলে","prompt":"Smooth aerial drone shot slowly flying over [CITY] at golden hour, busy streets below, warm light, realistic 4K, cinematic colour grading.","guideBn":"শহরের নাম দিলে সেই এলাকার আবহ আসবে।"},{"id":"sora_vid_2","tool":"kling","cat":"video","type":"specific","titleBn":"বৃষ্টির রাতে স্লো-মোশন","whenBn":"আবেগী বা সিনেমাটিক রাতের দৃশ্য চাইলে","prompt":"Cinematic slow-motion shot of [SUBJECT] walking in the rain at night under neon lights, wet reflections on the street, shallow depth of field, moody atmosphere.","guideBn":"মিউজিক ভিডিও বা ইন্ট্রোর জন্য ভালো।"},{"id":"sora_vid_3","tool":"kling","cat":"video","type":"specific","titleBn":"ছবি থেকে ভিডিও বানানো","whenBn":"একটি স্থির ছবিকে নড়াচড়া দিতে","prompt":"Animate the uploaded image: add gentle natural motion (wind in hair, drifting clouds, soft water ripples), subtle slow camera push-in, keep the subject's appearance unchanged.","guideBn":"ছবি আপলোড করে এই প্রম্পট দিন।"},{"id":"el_aud_1","tool":"elevenlabs","cat":"audio","type":"master","titleBn":"ভয়েসওভার স্ক্রিপ্ট (সুরের নির্দেশনাসহ)","whenBn":"ইউটিউব শর্টস বা বিজ্ঞাপনের ভয়েসের জন্য","prompt":"Write a 60-second voiceover script about [TOPIC]. Add tone cues in brackets such as [warm], [excited], [pause], and keep sentences short and easy to speak. Start with a strong hook.","guideBn":"স্ক্রিপ্টটি ElevenLabs-এ পেস্ট করে ভয়েস বেছে নিন।"},{"id":"el_aud_2","tool":"elevenlabs","cat":"audio","type":"specific","titleBn":"পডকাস্ট বা অডিওবুকের নরেশন","whenBn":"লম্বা গল্প বা প্রবন্ধ পড়ে শোনাতে","prompt":"Rewrite this text for spoken narration: shorten long sentences, remove hard-to-pronounce words, add natural pauses with commas and line breaks.\n\n[PASTE TEXT]","guideBn":"পড়ার জন্য লেখা আর শোনার জন্য লেখা আলাদা, তাই এটি রূপান্তর করে।"},{"id":"suno_aud_1","tool":"suno","cat":"audio","type":"master","titleBn":"গানের লিরিক্স ও সুর","whenBn":"নিজের মৌলিক গান বানাতে","prompt":"Write original song lyrics about [THEME] with Intro, Verse 1, Chorus, Verse 2, Chorus and Outro. Mood: [EMOTION]. Style: [GENRE]. Keep the chorus simple and catchy.","guideBn":"লিরিক্স Suno-তে পেস্ট করে স্টাইল বক্সে জনরা লিখুন। অন্য কারও গানের কথা নকল করবেন না।"},{"id":"cop_biz_1","tool":"copilot","cat":"business","type":"master","titleBn":"অফিস রিপোর্টের সারসংক্ষেপ","whenBn":"লম্বা রিপোর্ট বা মিটিং নোট ছোট করতে","prompt":"Summarise the text below for a busy manager: a 3-line overview, key decisions, action items with owners and deadlines, and open risks.\n\n[PASTE TEXT]","guideBn":"মিটিং নোট বা রিপোর্ট পেস্ট করলে কাজের তালিকা আলাদা করে দেবে।"},{"id":"cop_code_1","tool":"copilot","cat":"coding","type":"specific","titleBn":"কোড লাইন ধরে ব্যাখ্যা","whenBn":"অন্যের লেখা কোড বুঝতে","prompt":"Explain this [LANGUAGE] code line by line in simple Bangla. Then tell me what it does overall and one way to improve it.\n\n[PASTE CODE]","guideBn":"বাংলায় ব্যাখ্যা চাইলে 'in simple Bangla' রাখুন।"},{"id":"grk_res_1","tool":"grok","cat":"research","type":"master","titleBn":"ট্রেন্ডিং বিষয়ের বিশ্লেষণ","whenBn":"এখন কী নিয়ে আলোচনা হচ্ছে জানতে","prompt":"What are people discussing right now about [TOPIC]? Summarise the main viewpoints, any misinformation going around, and the most useful sources to check.","guideBn":"সাম্প্রতিক তথ্যের জন্য ভালো, তবে গুরুত্বপূর্ণ তথ্য আরেকটি সূত্রে যাচাই করুন।"},{"id":"grk_soc_1","tool":"grok","cat":"social","type":"specific","titleBn":"পোস্টের ধরন ও হ্যাশট্যাগ আইডিয়া","whenBn":"সোশ্যাল মিডিয়া পোস্ট পরিকল্পনায়","prompt":"Suggest 5 short post ideas about [TOPIC] that suit a [PLATFORM] audience in Bangladesh. For each give a hook, a one-line body and 3 hashtags.","guideBn":"প্ল্যাটফর্মের নাম (Facebook, X ইত্যাদি) নির্দিষ্ট করুন।"},{"id":"meta_wr_1","tool":"metaai","cat":"writing","type":"master","titleBn":"ক্লায়েন্ট বা কাস্টমারকে ভদ্র উত্তর","whenBn":"দ্রুত পেশাদার উত্তর লিখতে","prompt":"Write a short, polite reply to this message: [PASTE MESSAGE]. My answer: [YOUR POINTS]. Tone: friendly and professional. Under 80 words.","guideBn":"হোয়াটসঅ্যাপ বা মেসেঞ্জারে সরাসরি ব্যবহারের মতো ছোট উত্তর পাবেন।"},{"id":"meta_soc_1","tool":"metaai","cat":"social","type":"specific","titleBn":"ফেসবুক/হোয়াটসঅ্যাপ স্ট্যাটাসের ক্যাপশন","whenBn":"ছোট আকর্ষণীয় ক্যাপশন চাইলে","prompt":"Write 5 short Bangla captions for a photo about [OCCASION/MOOD]. Keep each under 12 words, add one fitting emoji, no clichés.","guideBn":"বিষয় বা মুড যত নির্দিষ্ট, ক্যাপশন তত ভালো।"},{"id":"ide_img_1","tool":"ideogram","cat":"image","type":"master","titleBn":"লেখাসহ পোস্টার ডিজাইন","whenBn":"ছবির ভেতরে স্পষ্ট লেখা চাইলে","prompt":"A clean modern poster with the exact text \"[YOUR TEXT]\" in bold readable typography, [COLOUR SCHEME] colours, centred layout, simple geometric background, high contrast.","guideBn":"লেখাটি উদ্ধৃতি চিহ্নের ভেতরে দিন, যাতে সঠিক বানানে আসে।"},{"id":"ide_img_2","tool":"ideogram","cat":"image","type":"specific","titleBn":"ইউটিউব থাম্বনেইল (লেখাসহ)","whenBn":"ভিডিওর থাম্বনেইল বানাতে","prompt":"YouTube thumbnail, 16:9, a surprised person on the right, big bold text \"[SHORT TITLE]\" on the left, bright yellow and blue colours, strong outline, high contrast.","guideBn":"লেখা ৩-৪ শব্দের মধ্যে রাখুন, নইলে ভেঙে যেতে পারে।"},{"id":"fir_img_1","tool":"firefly","cat":"image","type":"master","titleBn":"পণ্যের ব্যাকগ্রাউন্ড বদলানো","whenBn":"পণ্যের ছবিতে নতুন পরিবেশ দিতে","prompt":"Place the product on a [SETTING, e.g. wooden table near a window], soft natural light, gentle shadow, shallow depth of field, realistic commercial photo.","guideBn":"পণ্যের ছবি আপলোড করে ব্যাকগ্রাউন্ড জেনারেট করুন।"},{"id":"fir_img_2","tool":"firefly","cat":"image","type":"specific","titleBn":"টেক্সট ইফেক্ট ডিজাইন","whenBn":"শিরোনামে বিশেষ স্টাইল চাইলে","prompt":"The word \"[WORD]\" made of [MATERIAL, e.g. golden metal / green leaves / neon tubes], studio lighting, dark background, sharp detail.","guideBn":"ব্যানার বা শিরোনামের জন্য ভালো।"},{"id":"can_soc_1","tool":"canva","cat":"social","type":"master","titleBn":"ফেসবুক পোস্টের ডিজাইন নির্দেশ","whenBn":"Canva-র Magic Design-এ পোস্ট বানাতে","prompt":"Design a square social media post for [PAGE/BUSINESS]. Topic: [TOPIC]. Style: [MINIMAL / BOLD / ISLAMIC / CORPORATE]. Colours: [COLOURS]. Include a headline, short supporting line and a call to action.","guideBn":"Canva-তে Magic Design বা Magic Media-তে এটি দিন।"},{"id":"can_biz_1","tool":"canva","cat":"business","type":"specific","titleBn":"প্রেজেন্টেশন বা ব্রোশিউরের কাঠামো","whenBn":"স্লাইড বা ফ্লায়ারের লেখা সাজাতে","prompt":"Create a [NUMBER]-slide presentation outline for [TOPIC] aimed at [AUDIENCE]. For each slide give a title, 3 short bullet points and a visual suggestion.","guideBn":"আউটলাইন পেয়ে Canva-তে ডিজাইন বসাতে পারেন।"},{"id":"rwy_vid_2","tool":"runway","cat":"video","type":"specific","titleBn":"পণ্যের সিনেমাটিক ভিডিও শট","whenBn":"বিজ্ঞাপনের ছোট ভিডিও বানাতে","prompt":"Slow cinematic dolly shot around [PRODUCT] on a reflective surface, soft rim light, shallow depth of field, smooth motion, 5 seconds.","guideBn":"ছবি আপলোড করে Image to Video দিয়েও চেষ্টা করুন।"},{"id":"kl_vid_4","tool":"kling","cat":"video","type":"specific","titleBn":"মানুষের স্বাভাবিক নড়াচড়ার দৃশ্য","whenBn":"মানুষসহ ছোট ভিডিও ক্লিপ চাইলে","prompt":"A [PERSON DESCRIPTION] walking along a village road at golden hour, natural walking motion, camera follows from behind, soft warm light, realistic.","guideBn":"প্রতিটি ক্লিপে একটাই কাজ বর্ণনা করুন।"},{"id":"hey_vid_1","tool":"heygen","cat":"video","type":"master","titleBn":"টকিং অ্যাভাটার ভিডিওর স্ক্রিপ্ট","whenBn":"নিজে ক্যামেরায় না এসে ভিডিও বানাতে","prompt":"Write a 45-second spoken script for an AI presenter explaining [TOPIC] to [AUDIENCE]. Use short sentences, a friendly tone, one clear hook at the start and a call to action at the end.","guideBn":"স্ক্রিপ্টটি HeyGen-এ পেস্ট করে অ্যাভাটার ও ভয়েস বেছে নিন।"},{"id":"hey_vid_2","tool":"heygen","cat":"business","type":"specific","titleBn":"পণ্য বা সেবার পরিচিতি ভিডিও","whenBn":"ব্যবসার ছোট ভিডিও বানাতে","prompt":"Write a 30-second product intro video script for [PRODUCT]: the problem, the solution, 3 benefits and a closing line with contact details placeholder.","guideBn":"দাম ও যোগাযোগের তথ্য নিজে যোগ করুন।"},{"id":"not_pro_1","tool":"notion","cat":"business","type":"master","titleBn":"৩০ দিনের প্রজেক্ট রোডম্যাপ","whenBn":"নতুন কাজ বা ব্যবসা শুরুর পরিকল্পনায়","prompt":"Create a 30-day roadmap to launch [PROJECT]. Break it into weekly goals, daily tasks, owners and a final checklist. Present as a table.","guideBn":"Notion পেজে টেবিল আকারে বসিয়ে ট্র্যাক করুন।"},{"id":"not_study_1","tool":"notion","cat":"study","type":"specific","titleBn":"লেকচার নোট থেকে স্টাডি গাইড","whenBn":"এলোমেলো নোট গুছিয়ে পড়তে","prompt":"Turn these class notes into a study guide: headings, key terms with definitions, 10 revision questions and a one-paragraph summary.\n\n[PASTE NOTES]","guideBn":"নোট যত স্পষ্ট, গাইড তত ভালো।"},{"id":"jas_biz_1","tool":"jasper","cat":"business","type":"master","titleBn":"পণ্যের বর্ণনা (ই-কমার্স)","whenBn":"অনলাইন শপের জন্য পণ্য বর্ণনা লিখতে","prompt":"Write a persuasive product description for [PRODUCT]. Include a catchy title, 4 benefit-led bullet points, a short paragraph and a call to action. Brand voice: [FRIENDLY / PREMIUM / PLAYFUL].","guideBn":"ব্র্যান্ডের সুর (voice) আগে ঠিক করে নিন।"},{"id":"jas_wr_1","tool":"jasper","cat":"writing","type":"specific","titleBn":"লেখাকে এসইও-বান্ধব করা","whenBn":"ব্লগ বা পণ্যের লেখা গুগলে এগিয়ে নিতে","prompt":"Rewrite the text below to be clear, engaging and SEO-friendly. Naturally include the keyword \"[KEYWORD]\", add a meta description under 155 characters and 3 headings.\n\n[PASTE TEXT]","guideBn":"কিওয়ার্ড জোর করে বারবার বসাবেন না।"},{"id":"chr_study_1","tool":"characterai","cat":"study","type":"master","titleBn":"ইংরেজি স্পিকিং পার্টনার","whenBn":"ইংরেজি বলার অনুশীলন করতে","prompt":"Act as a friendly English conversation partner for a [LEVEL] learner. Talk about [TOPIC]. Keep your sentences short, ask me one question at a time, and gently correct my mistakes after each reply.","guideBn":"নিজের স্তর (beginner/intermediate) লিখে দিন।"},{"id":"chr_study_2","tool":"characterai","cat":"cv","type":"specific","titleBn":"ইন্টারভিউয়ের রোলপ্লে","whenBn":"ইন্টারভিউ বলার অনুশীলন করতে","prompt":"Play the role of a hiring manager interviewing me for [JOB TITLE]. Ask one question at a time, react naturally to my answers, and after 5 questions give me honest feedback.","guideBn":"নিজের উত্তর বাস্তব অভিজ্ঞতা থেকে দিন।"},{"id":"hf_code_1","tool":"huggingface","cat":"coding","type":"master","titleBn":"BERT মডেল ফাইন-টিউনিং কোড","whenBn":"মেশিন লার্নিং শিখতে বা প্রজেক্টে","prompt":"Write Python code using the Hugging Face Transformers library to fine-tune a BERT model for text classification on my dataset: [DESCRIBE DATASET]. Explain each step briefly and show how to evaluate the result.","guideBn":"প্রথমে ছোট ডেটাসেটে চালিয়ে দেখুন।"},{"id":"gam_biz_1","tool":"gamma","cat":"business","type":"master","titleBn":"প্রেজেন্টেশনের আউটলাইন","whenBn":"দ্রুত স্লাইড ডেক বানাতে","prompt":"Create a [NUMBER]-slide deck on [TOPIC] for [AUDIENCE]. Slide 1 title, then problem, solution, key data, examples, next steps. Keep each slide to 3 short bullets.","guideBn":"Gamma-তে 'Generate' দিয়ে এই লেখা পেস্ট করুন।"},{"id":"gam_study_1","tool":"gamma","cat":"study","type":"specific","titleBn":"ক্লাস প্রেজেন্টেশন বা সেমিনার স্লাইড","whenBn":"শিক্ষার্থীদের উপস্থাপনার জন্য","prompt":"Make a simple class presentation on [TOPIC] with an introduction, 4 main points with examples, a summary and 3 discussion questions. Use easy language.","guideBn":"পাঠ্য বই থেকে মূল পয়েন্টগুলো আগে সংগ্রহ করে নিন।"},{"id":"suno_aud_2","tool":"suno","cat":"audio","type":"specific","titleBn":"ব্যবসার জিঙ্গেল বা ছোট থিম গান","whenBn":"বিজ্ঞাপনের জন্য ছোট সুর চাইলে","prompt":"Write a 20-second catchy jingle for [BUSINESS] with a repeating hook line. Style: [UPBEAT POP / FOLK / LO-FI]. Mention the name only once.","guideBn":"নিজের মৌলিক কথা ব্যবহার করুন, অন্যের গান নকল নয়।"},{"id":"ds_study_1","tool":"deepseek","cat":"study","type":"specific","titleBn":"গণিতের সমাধান ধাপে ধাপে","whenBn":"অঙ্ক বুঝতে","prompt":"Solve this problem step by step and explain the reason for each step in simple words. At the end, give a similar practice problem.\n\n[PASTE PROBLEM]","guideBn":"উত্তর মিলিয়ে নিজেও যাচাই করুন।"},{"id":"cld_cv_1","tool":"claude","cat":"cv","type":"specific","titleBn":"সিভি রিভিউ ও উন্নয়ন","whenBn":"বিদ্যমান সিভি ভালো করতে","prompt":"Review my resume for the role of [JOB TITLE]. Point out weak parts, unclear wording and missing keywords, then rewrite the experience section with stronger, quantified bullet points. Do not invent facts.\n\n[PASTE RESUME]","guideBn":"নতুন কোনো তথ্য বানাতে নিষেধ করা আছে, তাই নিরাপদ।"},{"id":"gem_cv_1","tool":"gemini","cat":"cv","type":"specific","titleBn":"চাকরির বিজ্ঞপ্তি মিলিয়ে সিভি","whenBn":"বিজ্ঞপ্তির সাথে সিভি মেলাতে","prompt":"Compare my resume with this job description. List matching skills, missing skills, and 5 changes I should make to pass an ATS scan.\n\nJOB: [PASTE JD]\nRESUME: [PASTE RESUME]","guideBn":"দুটো আলাদা করে পেস্ট করুন।"},{"id":"prp_free_1","tool":"perplexity","cat":"freelance","type":"specific","titleBn":"ফ্রিল্যান্স নিশ ও চাহিদা যাচাই","whenBn":"কোন সার্ভিসের চাহিদা আছে জানতে","prompt":"Which freelance services are in demand right now for beginners in [SKILL AREA]? Give typical project types, a realistic starting price range, and cite sources.","guideBn":"দামের তথ্য উৎসে গিয়ে যাচাই করুন।"},{"id":"leo_img_3","tool":"leonardo","cat":"image","type":"specific","titleBn":"ইনস্টাগ্রাম পোস্টের ব্যাকগ্রাউন্ড","whenBn":"পোস্টের জন্য আকর্ষণীয় ব্যাকগ্রাউন্ড চাইলে","prompt":"Soft abstract gradient background in [COLOURS] with subtle grain, centred empty space for text, modern minimal style, 1:1.","guideBn":"ফাঁকা জায়গায় নিজের লেখা বসাবেন।"},{"id":"el_aud_3","tool":"elevenlabs","cat":"audio","type":"specific","titleBn":"ভিডিওর জন্য ইংরেজি ভয়েসওভার স্ক্রিপ্ট","whenBn":"ইংরেজি নরেশন লিখতে","prompt":"Write a calm, clear 90-second English narration about [TOPIC] for an explainer video. Short sentences, easy words, natural pauses marked with commas.","guideBn":"বাংলা ভয়েস চাইলে ElevenLabs-এ ভাষা বাংলা বেছে নিন।"}]};
+const EXTRA = {"guide":[{"id":"chatgpt","best":"লেখা, সিভি, কোডিং, ছবি বানানো ও প্রায় সব সাধারণ কাজ","free":"ফ্রি প্ল্যান আছে (ব্যবহারে সীমা থাকে), বেশি ব্যবহারে পেইড","freeType":"limited","start":["chatgpt.com-এ যান","Google বা ইমেইল দিয়ে সাইন আপ করুন","নিচের বক্সে বাংলায় বা ইংরেজিতে কাজ লিখুন"],"url":"https://chatgpt.com"},{"id":"gemini","best":"গুগল অ্যাপের সাথে কাজ, ফাইল/পিডিএফ পড়া, রিসার্চ, ছবি বানানো","free":"ফ্রিতে ব্যবহার করা যায় (সীমা থাকে), উন্নত ফিচারে পেইড","freeType":"limited","start":["gemini.google.com-এ যান","Google অ্যাকাউন্ট দিয়ে সাইন ইন করুন","লিখুন বা 🎤 দিয়ে বলুন, ফাইলও দিতে পারবেন"],"url":"https://gemini.google.com"},{"id":"claude","best":"লম্বা লেখা, ডকুমেন্ট বিশ্লেষণ, কোড রিভিউ, সম্পাদনা","free":"ফ্রি প্ল্যান আছে (সীমিত), বেশি ব্যবহারে পেইড","freeType":"limited","start":["claude.ai-এ যান","ইমেইল বা Google দিয়ে সাইন আপ করুন","লেখা বা ফাইল দিয়ে কাজ শুরু করুন"],"url":"https://claude.ai"},{"id":"deepseek","best":"কোডিং, গণিত ও যুক্তির কাজ","free":"ওয়েব ও অ্যাপে ফ্রি ব্যবহার করা যায়","freeType":"free","start":["chat.deepseek.com-এ যান","ইমেইল দিয়ে সাইন আপ করুন","প্রশ্ন লিখুন; ব্যক্তিগত তথ্য দেবেন না"],"url":"https://chat.deepseek.com"},{"id":"perplexity","best":"সূত্রসহ উত্তর, ফ্যাক্ট চেক, রিসার্চ","free":"ফ্রি প্ল্যান আছে (উন্নত সার্চ সীমিত), বেশি দরকারে পেইড","freeType":"limited","start":["perplexity.ai-এ যান","প্রশ্ন লিখুন, উত্তরের নিচের সূত্রের লিংক দেখুন","গুরুত্বপূর্ণ তথ্য সূত্রে গিয়ে যাচাই করুন"],"url":"https://www.perplexity.ai"},{"id":"copilot","best":"মাইক্রোসফট অফিস ও উইন্ডোজের সাথে কাজ, সাধারণ প্রশ্নোত্তর","free":"সাধারণ ব্যবহার ফ্রি, অফিস অ্যাপের পূর্ণ ফিচারে পেইড","freeType":"limited","start":["copilot.microsoft.com-এ যান","Microsoft অ্যাকাউন্ট দিয়ে সাইন ইন করুন","লিখে প্রশ্ন করুন"],"url":"https://copilot.microsoft.com"},{"id":"grok","best":"এক্স (X) ট্রেন্ড ও সাম্প্রতিক বিষয়ের আলোচনা","free":"ফ্রি প্ল্যানে সীমিত ব্যবহার, বেশি ব্যবহারে সাবস্ক্রিপশন","freeType":"limited","start":["grok.com-এ যান বা X অ্যাপে Grok খুলুন","অ্যাকাউন্টে সাইন ইন করুন","প্রশ্ন লিখুন"],"url":"https://grok.com"},{"id":"metaai","best":"হোয়াটসঅ্যাপ/ফেসবুকের ভেতরেই দ্রুত উত্তর ও ছবি","free":"সাধারণত ফ্রি; দেশভেদে কিছু ফিচার নাও থাকতে পারে","freeType":"free","start":["হোয়াটসঅ্যাপ বা মেসেঞ্জারে Meta AI খুলুন","অথবা meta.ai-এ যান","মেসেজ লিখে কাজ বলুন"],"url":"https://www.meta.ai"},{"id":"midjourney","best":"শিল্পমানের সুন্দর ছবি","free":"ফ্রি প্ল্যান বা ট্রায়াল নেই, শুধু পেইড (২০২৬ সালের তথ্য অনুযায়ী সবচেয়ে সস্তা প্ল্যান মাসে প্রায় $১০)","freeType":"paid","start":["midjourney.com-এ যান","একটি প্ল্যান নিন","ওয়েবে প্রম্পট লিখে ছবি বানান"],"url":"https://www.midjourney.com"},{"id":"leonardo","best":"গেম আর্ট, ক্যারেক্টার ও ডিজাইনের ছবি","free":"ফ্রি ক্রেডিট দিয়ে শুরু করা যায় (সীমিত), বেশি দরকারে পেইড","freeType":"limited","start":["leonardo.ai-এ যান","অ্যাকাউন্ট খুলুন","Image Generation-এ প্রম্পট দিন"],"url":"https://leonardo.ai"},{"id":"ideogram","best":"ছবির ভেতরে লেখা (পোস্টার, লোগো, থাম্বনেইল)","free":"ফ্রিতে সীমিত ব্যবহার, বেশি দরকারে পেইড","freeType":"limited","start":["ideogram.ai-এ যান","সাইন আপ করুন","লেখা উদ্ধৃতি চিহ্নে দিয়ে প্রম্পট লিখুন"],"url":"https://ideogram.ai"},{"id":"firefly","best":"অ্যাডোবির ইমেজ ও ডিজাইন কাজ, ব্যাকগ্রাউন্ড বদল","free":"সীমিত ফ্রি ক্রেডিট, বেশি দরকারে পেইড","freeType":"limited","start":["firefly.adobe.com-এ যান","Adobe অ্যাকাউন্ট দিয়ে সাইন ইন করুন","Text to Image বা Generative Fill চালান"],"url":"https://firefly.adobe.com"},{"id":"canva","best":"পোস্ট, পোস্টার, প্রেজেন্টেশন ডিজাইন","free":"ফ্রি প্ল্যান আছে; কিছু AI ও প্রিমিয়াম ফিচার পেইড","freeType":"limited","start":["canva.com-এ যান বা অ্যাপ নামান","অ্যাকাউন্ট খুলুন","Magic Design বা টেমপ্লেট বেছে নিন"],"url":"https://www.canva.com"},{"id":"runway","best":"AI ভিডিও জেনারেশন ও এডিটিং","free":"শুরুতে সীমিত ফ্রি ক্রেডিট, এরপর পেইড","freeType":"limited","start":["runwayml.com-এ যান","সাইন আপ করুন","Text to Video বা Image to Video বেছে নিন"],"url":"https://runwayml.com"},{"id":"kling","best":"ছোট AI ভিডিও ক্লিপ","free":"ফ্রিতে প্রতিদিন ৬৬ ক্রেডিট (ওয়াটারমার্কসহ, ব্যক্তিগত ব্যবহারের জন্য)। পরিমাণ বদলাতে পারে।","freeType":"limited","start":["klingai.com-এ যান","অ্যাকাউন্ট খুলুন","প্রম্পট লিখে ৫ সেকেন্ডের ক্লিপ বানান"],"url":"https://klingai.com"},{"id":"heygen","best":"টকিং অ্যাভাটার ভিডিও, ভিডিও অনুবাদ","free":"ফ্রি প্ল্যান সীমিত, বেশি দরকারে পেইড","freeType":"limited","start":["heygen.com-এ যান","সাইন আপ করুন","স্ক্রিপ্ট পেস্ট করে অ্যাভাটার বেছে নিন"],"url":"https://www.heygen.com"},{"id":"elevenlabs","best":"প্রাকৃতিক ভয়েসওভার ও টেক্সট-টু-স্পিচ","free":"প্রতি মাসে সীমিত ফ্রি ক্রেডিট","freeType":"limited","start":["elevenlabs.io-এ যান","সাইন আপ করুন","লেখা পেস্ট করে ভয়েস ও ভাষা বেছে নিন"],"url":"https://elevenlabs.io"},{"id":"suno","best":"গান ও মিউজিক বানানো","free":"ফ্রিতে প্রতিদিন সীমিত গান; ব্যবসায়িক ব্যবহারে পেইড লাগতে পারে","freeType":"limited","start":["suno.com-এ যান","সাইন ইন করুন","লিরিক্স ও স্টাইল লিখে গান বানান"],"url":"https://suno.com"},{"id":"notion","best":"নোট, প্রজেক্ট প্ল্যান, ডকুমেন্টে AI সহায়ক","free":"Notion-এর ফ্রি প্ল্যান আছে, তবে AI ফিচার সাধারণত পেইড বা সীমিত ট্রায়ালে। অফিসিয়াল পেজে দাম দেখে নিন","freeType":"paid","start":["notion.com-এ অ্যাকাউন্ট খুলুন","একটি পেজ খুলে AI অপশন দেখুন","দাম ও ট্রায়াল অফিসিয়াল পেজে যাচাই করুন"],"url":"https://www.notion.com"},{"id":"jasper","best":"মার্কেটিং কপি ও ব্র্যান্ডের লেখা","free":"স্থায়ী ফ্রি প্ল্যান নেই, ট্রায়ালসহ পেইড","freeType":"paid","start":["jasper.ai-এ যান","ট্রায়াল আছে কিনা দেখুন","ব্র্যান্ডের সুর ঠিক করে লেখা শুরু করুন"],"url":"https://www.jasper.ai"},{"id":"characterai","best":"ইংরেজি স্পিকিং প্র্যাকটিস ও রোলপ্লে","free":"ফ্রিতে ব্যবহার করা যায়, পেইড সাবস্ক্রিপশনও আছে","freeType":"free","start":["character.ai-এ যান","সাইন আপ করুন","একটি চরিত্র বেছে কথা শুরু করুন"],"url":"https://character.ai"},{"id":"huggingface","best":"ওপেন-সোর্স AI মডেল ও ডেভেলপারদের জন্য","free":"বেশিরভাগ ফ্রি, বড় কাজে পেইড অপশন আছে","freeType":"free","start":["huggingface.co-এ যান","অ্যাকাউন্ট খুলুন","Models বা Spaces-এ ঘুরে দেখুন"],"url":"https://huggingface.co"},{"id":"gamma","best":"দ্রুত প্রেজেন্টেশন ও স্লাইড বানানো","free":"ফ্রি ক্রেডিট দিয়ে শুরু, বেশি দরকারে পেইড","freeType":"limited","start":["gamma.app-এ যান","সাইন আপ করুন","বিষয় লিখে Generate চাপুন"],"url":"https://gamma.app"}],"tasks":[{"task":"🖼️ ছবি বানাতে","bn":"সবচেয়ে সুন্দর ছবি Midjourney-তে, লেখাসহ ছবি Ideogram-এ, ফ্রিতে শুরু করতে Leonardo বা ChatGPT","tools":["midjourney","ideogram","leonardo","chatgpt","firefly"]},{"task":"🎬 ভিডিও বানাতে","bn":"ছোট ক্লিপ Kling ও Runway-তে, কথা বলা অ্যাভাটার ভিডিও HeyGen-এ","tools":["kling","runway","heygen"]},{"task":"✍️ লেখা ও সিভি","bn":"সাধারণ লেখায় ChatGPT, লম্বা ও গোছানো লেখায় Claude, মার্কেটিং কপিতে Jasper","tools":["chatgpt","claude","jasper","gemini"]},{"task":"💻 কোডিং","bn":"কোড লেখা ও ঠিক করায় DeepSeek, Claude, ChatGPT; মডেল শিখতে Hugging Face","tools":["deepseek","claude","chatgpt","copilot","huggingface"]},{"task":"🔍 রিসার্চ ও ফ্যাক্ট চেক","bn":"সূত্রসহ উত্তরে Perplexity, ফাইল পড়ায় Gemini, ট্রেন্ডে Grok","tools":["perplexity","gemini","grok"]},{"task":"🎙️ ভয়েস ও গান","bn":"ভয়েসওভারে ElevenLabs, গান বানাতে Suno","tools":["elevenlabs","suno"]},{"task":"📊 স্লাইড ও ডিজাইন","bn":"স্লাইডে Gamma, পোস্ট ও পোস্টারে Canva","tools":["gamma","canva","notion"]},{"task":"📚 পড়াশোনা","bn":"বোঝা ও নোট করায় Gemini, ChatGPT; ইংরেজি বলায় Character.AI","tools":["gemini","chatgpt","characterai","notion"]}],"lessons":[{"id":"l1","title":"প্রম্পট কী এবং কেন গুরুত্বপূর্ণ","body":["প্রম্পট হলো AI-কে দেওয়া আপনার নির্দেশ।","নির্দেশ যত পরিষ্কার, উত্তর তত কাজের হয়।","'সিভি লিখে দাও' আর 'IT চাকরির জন্য ATS-ফ্রেন্ডলি সিভি লিখে দাও, ২ বছরের অভিজ্ঞতা' এক কথা নয়।"],"example":"আমি একজন নতুন গ্র্যাজুয়েট। ফ্রন্টএন্ড ডেভেলপার পদের জন্য এক পৃষ্ঠার সিভি লেখো। দক্ষতা: HTML, CSS, JavaScript।","task":"আজ একটা সাধারণ প্রশ্ন নিয়ে তার বিস্তারিত রূপ লিখে দেখুন।"},{"id":"l2","title":"ভালো প্রম্পটের ৬টি উপাদান","body":["১. রোল: AI কে কী ভূমিকায় রাখবেন","২. কাজ: ঠিক কী করতে হবে","৩. প্রেক্ষাপট: পটভূমি ও তথ্য","৪. ফরম্যাট: তালিকা, টেবিল, ইমেইল ইত্যাদি","৫. সুর: আনুষ্ঠানিক না বন্ধুত্বপূর্ণ","৬. সীমা: কী করা যাবে না, কত শব্দ"],"example":"তুমি একজন অভিজ্ঞ HR। [কাজ]। প্রেক্ষাপট: [তথ্য]। উত্তর টেবিল আকারে দাও। সুর: ভদ্র। সর্বোচ্চ ২০০ শব্দ।","task":"ইউনিভার্সাল মাস্টার প্রম্পটটি কপি করে একটি কাজে ব্যবহার করুন।"},{"id":"l3","title":"রোল দিয়ে শুরু করুন","body":["'তুমি একজন ...' বলে শুরু করলে AI সেই দৃষ্টিভঙ্গিতে উত্তর দেয়।","যেমন: শিক্ষক, মার্কেটার, প্রোগ্রামার, ক্যারিয়ার কাউন্সেলর।"],"example":"তুমি একজন অভিজ্ঞ ডিজিটাল মার্কেটার। আমার ছোট পোশাকের পেজের জন্য ৭ দিনের ফেসবুক পোস্ট প্ল্যান করো।","task":"একই প্রশ্ন রোল ছাড়া ও রোলসহ করে দুটো উত্তর মিলিয়ে দেখুন।"},{"id":"l4","title":"উদাহরণ দিয়ে বোঝান","body":["আপনি কেমন উত্তর চান তার একটি নমুনা দিলে AI সেটা অনুসরণ করে।","নমুনা ছোট রাখুন, ১-২টি যথেষ্ট।"],"example":"নিচের স্টাইলে ৩টি ক্যাপশন লেখো।\nনমুনা: 'সকালের চা, ছোট্ট শান্তি ☕'\nবিষয়: বর্ষার বিকেল","task":"নিজের পছন্দের একটি নমুনা দিয়ে ক্যাপশন চান।"},{"id":"l5","title":"ধাপে ধাপে ভাবতে বলুন","body":["জটিল প্রশ্নে 'ধাপে ধাপে ব্যাখ্যা করো' যোগ করলে উত্তর বেশি নির্ভুল ও বোঝার মতো হয়।","অঙ্ক, পরিকল্পনা ও সিদ্ধান্তে এটা বেশি কাজে লাগে।"],"example":"এই অঙ্কটি ধাপে ধাপে সমাধান করো এবং প্রতিটি ধাপের কারণ লেখো: [সমস্যা]","task":"একটি অঙ্ক বা পরিকল্পনা ধাপে ধাপে করিয়ে নিন।"},{"id":"l6","title":"ফরম্যাট ঠিক করে দিন","body":["টেবিল, বুলেট, ধাপ বা ইমেইল, কোন আকারে চান তা বলুন।","শব্দসংখ্যাও বলে দিন।"],"example":"তিনটি ফ্রিল্যান্স সাইটের তুলনা করে একটি টেবিল দাও: সাইটের নাম, সুবিধা, অসুবিধা, নতুনদের জন্য উপযোগিতা।","task":"একই তথ্য একবার বুলেটে, একবার টেবিলে চান।"},{"id":"l7","title":"ফলো-আপ করে উন্নত করুন","body":["প্রথম উত্তরই শেষ নয়। 'আরও ছোট করো', 'আরও সহজ ভাষায় লেখো', 'আরেকটি ভার্সন দাও' বলুন।","ভালো ফলের জন্য ২-৩ বার ঘুরিয়ে নিন।"],"example":"উপরের উত্তরটি ১০০ শব্দে সংক্ষেপ করো এবং আরও বন্ধুত্বপূর্ণ সুরে লেখো।","task":"যেকোনো উত্তরকে দুবার উন্নত করুন।"},{"id":"l8","title":"ছবি ও ভিডিওর প্রম্পট","body":["সূত্র: বিষয় + স্টাইল + আলো + ক্যামেরা অ্যাঙ্গেল + মেজাজ।","ভিডিওতে ক্যামেরার নড়াচড়াও লিখুন (ধীরে এগোনো, আকাশ থেকে দেখা)।","পরিচিত চরিত্র বা কারও কপিরাইট করা কাজের নাম এড়িয়ে নিজের বর্ণনা দিন।"],"example":"নদীর পারে সূর্যাস্তে একজন কৃষক, সোনালি আলো, ৩৫মিমি লেন্স, শান্ত পরিবেশ, বাস্তবসম্মত ছবি।","task":"একটি দৃশ্য ছবির টুলে চেষ্টা করুন।"},{"id":"l9","title":"সাধারণ ভুল ও নিরাপত্তা","body":["অস্পষ্ট নির্দেশ দেওয়া, একসাথে অনেক কাজ চাওয়া, উত্তর যাচাই না করা, এগুলো সাধারণ ভুল।","AI ভুল তথ্য দিতে পারে, গুরুত্বপূর্ণ তথ্য (স্বাস্থ্য, আইন, টাকা) অন্য সূত্রে যাচাই করুন।","পাসওয়ার্ড, NID, ব্যাংক তথ্য বা API কী কখনো প্রম্পটে দেবেন না।"],"example":"তুমি যে তথ্য দিলে তার সূত্র বা যাচাইয়ের উপায় বলো, এবং কোন অংশে তুমি নিশ্চিত নও তা আলাদা করে দেখাও।","task":"একটি উত্তরের তথ্য আরেকটি সূত্রে যাচাই করুন।"}],"news":[{"date":"১২ অক্টোবর ২০২৬","title":"OpenAI-এর Sora কনজিউমার অ্যাপ বন্ধ","text":"একটি টাইমলাইন প্রতিবেদন অনুযায়ী Sora-র কনজিউমার অ্যাপ ২৬ এপ্রিল ২০২৬ তারিখে বন্ধ হয়েছে। তাই এই অ্যাপে Sora রাখা হয়নি, ভিডিওর জন্য Runway ও Kling দেখুন। তথ্যটি দ্বিতীয় সূত্র থেকে, তাই OpenAI-র ঘোষণায় যাচাই করে নিন।","src":"https://af.net/realtime/openais-sora-ai-a-timeline-of-innovations-and-discontinuation/"},{"date":"১২ অক্টোবর ২০২৬","title":"Kling-এর ফ্রি প্ল্যান: প্রতিদিন ৬৬ ক্রেডিট","text":"একটি রিভিউ অনুযায়ী Kling ফ্রিতে দৈনিক ৬৬ ক্রেডিট দেয়, ওয়াটারমার্কসহ এবং ব্যক্তিগত ব্যবহারের জন্য। আগে এটি বেশি ছিল, পরিমাণ অ্যাকাউন্টভেদে বদলাতে পারে।","src":"https://aireiter.com/blog/kling-ai-free-tier-2026"},{"date":"১২ অক্টোবর ২০২৬","title":"Midjourney-তে এখনও ফ্রি ট্রায়াল নেই","text":"একটি তুলনামূলক লেখা অনুযায়ী ২০২৬ সালেও Midjourney-তে ফ্রি প্ল্যান বা ট্রায়াল নেই। সবচেয়ে সস্তা প্ল্যান মাসে প্রায় $১০। লেখাটি প্রতিযোগী একটি সেবার, তাই অফিসিয়াল পেজে দাম দেখে নিন।","src":"https://zsky.ai/blog/how-much-does-midjourney-cost.html"}],"owner":{"name":"Md. Shamim Hossain","links":[{"label":"Facebook","icon":"f","url":"https://www.facebook.com/share/1PDXixg1Qn/","color":"#1877F2"},{"label":"YouTube","icon":"▶","url":"https://youtube.com/@smarteducationtvbd?si=DALg1x5Q_m2yT6bE","color":"#FF0000"},{"label":"Instagram","icon":"◎","url":"https://www.instagram.com/smarteducationtv?cplk=dHgxeDBuaXpoZjNv","color":"#C13584"}]}};
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+};
+const bnNum = n => String(n).replace(/\d/g, d => '০১২৩৪৫৬৭৮৯'[d]);
+
+const toolMap = Object.fromEntries(DATA.tools.map(t => [t.id, t]));
+const catMap  = Object.fromEntries(DATA.categories.map(c => [c.id, c]));
+const guideMap = Object.fromEntries(EXTRA.guide.map(g => [g.id, g]));
+const state = {
+  tab:'home', tool:'', cat:'', q:'',
+  favs:new Set(store.get('aph_favs', [])),
+  recent:store.get('aph_recent', []),
+  mine:store.get('aph_mine', []),
+  done:new Set(store.get('aph_done', [])),
+  freeF:''
+};
+
+/* ---------- search engine ---------- */
+const norm = s => String(s).toLowerCase().normalize('NFC').replace(/[^\p{L}\p{M}\p{N}\s]/gu, ' ').replace(/\s+/g, ' ').trim();
+const SYN = [
+  ['cv','সিভি','রেজুমে','resume','বায়োডাটা','biodata'],
+  ['image','ছবি','ইমেজ','photo','ফটো','picture','পোস্টার','poster','থাম্বনেইল','thumbnail'],
+  ['video','ভিডিও','রিলস','reel','reels','রিল','শর্টস','shorts'],
+  ['email','ইমেইল','মেইল','মেসেজ','চিঠি','আবেদন'],
+  ['code','কোড','কোডিং','coding','প্রোগ্রামিং','programming','কোডার','এরর','bug','বাগ'],
+  ['study','পড়াশোনা','পড়া','পরীক্ষা','exam','শিক্ষা','স্টাডি','নোট'],
+  ['business','ব্যবসা','বিজনেস','marketing','মার্কেটিং','বিজ্ঞাপন','ad','ads','বিক্রি','sales'],
+  ['social','সোশ্যাল','ফেসবুক','facebook','ইনস্টাগ্রাম','instagram','পোস্ট','ক্যাপশন','caption'],
+  ['freelance','ফ্রিল্যান্সিং','ফ্রিল্যান্স','upwork','fiverr','আপওয়ার্ক','ফাইভার','প্রপোজাল','proposal'],
+  ['audio','অডিও','ভয়েস','voice','গান','song','music','মিউজিক','ভয়েসওভার','voiceover'],
+  ['research','রিসার্চ','গবেষণা','তথ্য','ফ্যাক্ট','fact'],
+  ['writing','লেখা','লেখালেখি','আর্টিকেল','article','ব্লগ','blog','seo','এসইও'],
+  ['translate','অনুবাদ','translation','ট্রান্সলেট'],
+  ['chatgpt','চ্যাটজিপিটি','gpt','openai'],
+  ['gemini','জেমিনি','google','গুগল'],
+  ['claude','ক্লড','anthropic'],
+  ['midjourney','মিডজার্নি','mj'],
+  ['deepseek','ডিপসিক'],
+  ['perplexity','পারপ্লেক্সিটি'],
+  ['canva','ক্যানভা'],
+  ['elevenlabs','ইলেভেনল্যাবস'],
+  ['suno','সুনো'],
+  ['leonardo','লিওনার্দো'],
+  ['presentation','প্রেজেন্টেশন','স্লাইড','slide','slides','ppt']
+];
+const synOf = tok => { const out = new Set([tok]); for(const g of SYN) if(g.includes(tok)) g.forEach(x => out.add(x)); return [...out]; };
+
+function lev1(a, b){
+  if(Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, diff = 0;
+  while(i < a.length && j < b.length){
+    if(a[i] === b[j]){ i++; j++; continue; }
+    if(++diff > 1) return false;
+    if(a.length > b.length) i++; else if(a.length < b.length) j++; else { i++; j++; }
+  }
+  return diff + (a.length - i) + (b.length - j) <= 1;
+}
+function prep(p){
+  const t = toolMap[p.tool] || {name:p.tool, nameEn:''}, c = catMap[p.cat] || {bn:'', en:''};
+  p._title = norm(p.titleBn); p._tool = norm(t.name + ' ' + (t.nameEn || '')); p._cat = norm(c.bn + ' ' + c.en);
+  p._hay = norm([p.titleBn, p.whenBn, p.prompt, p.guideBn].join(' ')) + ' ' + p._tool + ' ' + p._cat;
+  p._words = new Set(p._hay.split(' '));
+  return p;
+}
+DATA.prompts.forEach(prep);
+const mineToPrompt = m => prep({id:m.id, tool:m.tool, cat:m.cat, type:'specific', titleBn:m.title, whenBn:'আমার নিজের সেভ করা প্রম্পট', prompt:m.text, guideBn:'এটি আপনার নিজের প্রম্পট।', mine:true});
+let ALL = [];
+function rebuildAll(){ ALL = [...state.mine.map(mineToPrompt), ...DATA.prompts]; }
+rebuildAll();
+
+function score(p, toks){
+  let s = 0;
+  for(const tok of toks){
+    const alts = synOf(tok);
+    let best = 0;
+    for(const a of alts){
+      if(p._title.includes(a)) best = Math.max(best, 5);
+      else if(p._tool.includes(a)) best = Math.max(best, 4);
+      else if(p._cat.includes(a)) best = Math.max(best, 3);
+      else if(p._hay.includes(a)) best = Math.max(best, 1);
+      else if(a.length >= 5){ for(const w of p._words) if(lev1(a, w)){ best = Math.max(best, 1); break; } }
+    }
+    if(!best) return 0;
+    s += best;
+  }
+  return s;
+}
+const tokensOf = q => norm(q).split(' ').filter(Boolean);
+
+/* ---------- theme / toast / clipboard ---------- */
+function setTheme(t){
+  document.documentElement.dataset.theme = t;
+  $('#themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+  const m = document.querySelector('meta[name=theme-color]'); if(m) m.content = t === 'dark' ? '#0B1120' : '#4F46E5';
+}
+setTheme(store.get('aph_theme', matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+$('#themeBtn').onclick = () => { const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'; setTheme(t); store.set('aph_theme', t); };
+
+let toastTimer;
+function toast(msg){ const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1900); }
+async function copyText(text){
+  try{ await navigator.clipboard.writeText(text); }
+  catch(e){
+    const ta = document.createElement('textarea'); ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = 0;
+    document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); }catch(_){}
+    ta.remove();
+  }
+  toast('📋 কপি হয়েছে ✓');
+}
+function hl(text, toks){
+  const ws = [...new Set(toks.flatMap(synOf))].filter(w => w.length >= 2);
+  if(!ws.length) return esc(text);
+  const re = new RegExp('(' + ws.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')', 'gi');
+  return text.split(re).map((part, i) => i % 2 ? '<mark class="hit">' + esc(part) + '</mark>' : esc(part)).join('');
+}
+function badge(t, lg){ return `<span class="badge${lg ? ' lg' : ''}" style="background:${t.color}">${esc(t.letter)}</span>`; }
+
+/* ---------- home list ---------- */
+function renderRails(){
+  const tools = [{id:'', name:'সব টুল', color:'#4F46E5', letter:'✦'}, ...DATA.tools];
+  $('#toolRail').innerHTML = tools.map(t =>
+    `<button class="chip${state.tool === t.id ? ' on' : ''}" data-tool="${t.id}">${badge(t)}${esc(t.name)}</button>`).join('');
+  const cats = [{id:'', icon:'🗂️', bn:'সব ক্যাটাগরি'}, ...DATA.categories];
+  $('#catRail').innerHTML = cats.map(c =>
+    `<button class="chip cat${state.cat === c.id ? ' on' : ''}" data-cat="${c.id}">${c.icon} ${esc(c.bn)}</button>`).join('');
+}
+
+function cardHtml(p, toks){
+  const t = toolMap[p.tool] || {name:p.tool, color:'#64748B', letter:'★'}, c = catMap[p.cat] || {icon:'🗂️', bn:p.cat};
+  const body = esc(p.prompt).replace(/\[([^\]]+)\]/g, '<mark>[$1]</mark>');
+  const fav = state.favs.has(p.id);
+  const long = p.prompt.length > 190;
+  return `<article class="card" data-id="${esc(p.id)}">
+    <div class="card-head">${badge(t, true)}
+      <div class="meta"><div class="tool-name" style="color:${t.color}">${esc(t.name)}</div>
+        <div class="tags"><span class="tag">${c.icon} ${esc(c.bn)}</span>${p.type === 'master' ? '<span class="tag m">⭐ মাস্টার</span>' : ''}${p.mine ? '<span class="tag g">আমার</span>' : ''}</div></div>
+      <button class="fav${fav ? ' on' : ''}" data-act="fav" aria-label="প্রিয়">${fav ? '★' : '☆'}</button>
+    </div>
+    <h3>${hl(p.titleBn, toks)}</h3>
+    <p class="when">${esc(p.whenBn)}</p>
+    <div class="prompt${long ? '' : ' open'}">${body}</div>
+    ${long ? '<button class="more" data-act="more">পুরোটা দেখুন ▾</button>' : ''}
+    <div class="guide">💡 ${esc(p.guideBn)}</div>
+    <div class="actions"><button class="btn green" data-act="copy">📋 কপি করুন</button><button class="btn ghost" data-act="share" aria-label="শেয়ার">↗</button>${p.mine ? '<button class="btn red" data-act="del" aria-label="মুছুন">🗑</button>' : ''}</div>
+  </article>`;
+}
+
+function dailyPick(){
+  const pool = DATA.prompts.filter(p => p.type === 'specific');
+  const day = Math.floor((Date.now() + 6 * 3600e3) / 864e5);
+  return pool[day % pool.length];
+}
+function renderDaily(){
+  const show = state.tab === 'home' && !state.q && !state.tool && !state.cat;
+  if(!show){ $('#dailyBox').innerHTML = ''; return; }
+  const p = dailyPick(), t = toolMap[p.tool];
+  const body = esc(p.prompt).replace(/\[([^\]]+)\]/g, '<mark>[$1]</mark>');
+  $('#dailyBox').innerHTML = `<article class="card daily" data-id="${p.id}">
+    <div class="tags"><span class="tag">🌅 আজকের প্রম্পট</span><span class="tag">${esc(t.name)}</span></div>
+    <h3>${esc(p.titleBn)}</h3><p class="when">${esc(p.whenBn)}</p>
+    <div class="prompt open">${body}</div>
+    <div class="actions" style="margin-top:10px"><button class="btn" data-act="copy">📋 কপি করুন</button></div></article>`;
+}
+
+function renderList(){
+  const toks = tokensOf(state.q);
+  let items = ALL.filter(p =>
+    (state.tab !== 'fav' || p.mine || state.favs.has(p.id)) &&
+    (!state.tool || p.tool === state.tool) &&
+    (!state.cat || p.cat === state.cat));
+  if(toks.length){
+    items = items.map(p => [p, score(p, toks)]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).map(x => x[0]);
+  } else {
+    items = items.map((p, i) => [p, i]).sort((a, b) => ((b[0].mine === true) - (a[0].mine === true)) || ((b[0].type === 'master') - (a[0].type === 'master')) || a[1] - b[1]).map(x => x[0]);
+  }
+  $('#count').textContent = items.length ? `${bnNum(items.length)}টি প্রম্পট` : '';
+  $('#list').innerHTML = items.length ? items.map(p => cardHtml(p, toks)).join('') :
+    `<div class="empty"><b>${state.tab === 'fav' ? '⭐' : '🔎'}</b>${state.tab === 'fav' ? 'এখনো কিছু নেই। কার্ডের ☆ চাপুন বা ➕ দিয়ে নিজের প্রম্পট যোগ করুন।' : 'কিছু পাওয়া যায়নি। অন্য শব্দে চেষ্টা করুন বা ফিল্টার সরান।'}</div>`;
+  $('#clearQ').style.display = state.q ? 'block' : 'none';
+  renderDaily();
+}
+
+/* popular + suggestions */
+const POPULAR = ['সিভি','ছবি','ভিডিও','ফ্রিল্যান্সিং','ইমেইল','পড়াশোনা','কোডিং','ফেসবুক'];
+function renderPop(){
+  const rec = state.recent.slice(0, 4);
+  $('#pop').innerHTML = (state.q ? '' :
+    (rec.length ? '<span class="lab">🕘</span>' + rec.map(r => `<button data-r="${esc(r)}">${esc(r)}</button>`).join('') : '') +
+    '<span class="lab">🔥</span>' + POPULAR.map(r => `<button data-r="${esc(r)}">${esc(r)}</button>`).join(''));
+}
+function pushRecent(q){
+  q = q.trim(); if(q.length < 2) return;
+  state.recent = [q, ...state.recent.filter(x => x !== q)].slice(0, 8);
+  store.set('aph_recent', state.recent); renderPop();
+}
+function setQuery(q, save){ state.q = q; $('#q').value = q; hideSugg(); renderList(); renderPop(); if(save) pushRecent(q); }
+
+function showSugg(){
+  const toks = tokensOf(state.q), box = $('#sugg');
+  let html = '';
+  if(!toks.length){
+    if(state.recent.length){
+      html += '<h6>সাম্প্রতিক সার্চ</h6>' + state.recent.slice(0, 5).map(r => `<button data-sr="${esc(r)}">🕘 ${esc(r)}</button>`).join('');
+      html += '<button class="clr" data-clr="1">সাম্প্রতিক সার্চ মুছুন</button>';
+    }
+  } else {
+    const alts = toks.flatMap(synOf);
+    const tl = DATA.tools.filter(t => t.id !== 'all' && alts.some(a => norm(t.name + ' ' + (t.nameEn || '')).includes(a))).slice(0, 3);
+    const cl = DATA.categories.filter(c => alts.some(a => norm(c.bn + ' ' + c.en).includes(a))).slice(0, 3);
+    const pl = ALL.map(p => [p, score(p, toks)]).filter(x => x[1] > 0).sort((a, b) => b[1] - a[1]).slice(0, 4).map(x => x[0]);
+    if(tl.length) html += '<h6>টুল</h6>' + tl.map(t => `<button data-st="${t.id}">${badge(t)} ${esc(t.name)}<span class="sub">এই টুলের প্রম্পট</span></button>`).join('');
+    if(cl.length) html += '<h6>ক্যাটাগরি</h6>' + cl.map(c => `<button data-sc="${c.id}">${c.icon} ${esc(c.bn)}<span class="sub">ক্যাটাগরি</span></button>`).join('');
+    if(pl.length) html += '<h6>প্রম্পট</h6>' + pl.map(p => `<button data-sp="${esc(p.id)}">${hl(p.titleBn, toks)}</button>`).join('');
+  }
+  box.innerHTML = html; box.classList.toggle('show', !!html);
+}
+function hideSugg(){ $('#sugg').classList.remove('show'); }
+
+const qi = $('#q');
+qi.addEventListener('input', e => { state.q = e.target.value; renderList(); renderPop(); showSugg(); });
+qi.addEventListener('focus', showSugg);
+qi.addEventListener('keydown', e => { if(e.key === 'Enter'){ pushRecent(state.q); hideSugg(); qi.blur(); } });
+document.addEventListener('click', e => { if(!e.target.closest('.searchbox')) hideSugg(); });
+$('#clearQ').onclick = () => { setQuery(''); qi.focus(); };
+$('#sugg').onclick = e => {
+  const b = e.target.closest('button'); if(!b) return;
+  if(b.dataset.sr) setQuery(b.dataset.sr, true);
+  else if(b.dataset.clr){ state.recent = []; store.set('aph_recent', []); renderPop(); showSugg(); }
+  else if(b.dataset.st){ state.tool = b.dataset.st; setQuery(''); renderRails(); }
+  else if(b.dataset.sc){ state.cat = b.dataset.sc; setQuery(''); renderRails(); }
+  else if(b.dataset.sp){ const p = ALL.find(x => x.id === b.dataset.sp); setQuery(p.titleBn, true); }
+};
+$('#pop').onclick = e => { const b = e.target.closest('button'); if(b && b.dataset.r) setQuery(b.dataset.r, true); };
+$('#toolRail').onclick = e => { const b = e.target.closest('button'); if(!b) return; state.tool = b.dataset.tool; renderRails(); renderList(); };
+$('#catRail').onclick  = e => { const b = e.target.closest('button'); if(!b) return; state.cat = b.dataset.cat; renderRails(); renderList(); };
+
+async function cardAction(e){
+  const btn = e.target.closest('[data-act]'); if(!btn) return;
+  const card = btn.closest('.card'), p = ALL.find(x => x.id === card.dataset.id) || DATA.prompts.find(x => x.id === card.dataset.id);
+  if(!p) return;
+  const act = btn.dataset.act;
+  if(act === 'copy') copyText(p.prompt);
+  else if(act === 'more'){ const box = card.querySelector('.prompt'); box.classList.toggle('open'); btn.textContent = box.classList.contains('open') ? 'কম দেখুন ▴' : 'পুরোটা দেখুন ▾'; }
+  else if(act === 'fav'){
+    state.favs.has(p.id) ? state.favs.delete(p.id) : state.favs.add(p.id);
+    store.set('aph_favs', [...state.favs]);
+    toast(state.favs.has(p.id) ? '⭐ প্রিয় তালিকায় যুক্ত হয়েছে' : 'প্রিয় তালিকা থেকে সরানো হয়েছে');
+    renderList();
+  } else if(act === 'del'){
+    if(confirm('এই প্রম্পটটি মুছে ফেলবেন?')){
+      state.mine = state.mine.filter(m => m.id !== p.id); store.set('aph_mine', state.mine);
+      state.favs.delete(p.id); store.set('aph_favs', [...state.favs]);
+      rebuildAll(); renderList(); toast('মুছে ফেলা হয়েছে');
+    }
+  } else if(act === 'share'){
+    const text = `${p.titleBn}\n\n${p.prompt}\n\n— প্রম্পট গুরু`;
+    if(navigator.share){ try{ await navigator.share({title: p.titleBn, text}); }catch(_){} } else copyText(text);
+  }
+}
+$('#list').onclick = cardAction;
+$('#dailyBox').onclick = cardAction;
+
+/* ---------- tabs ---------- */
+const views = {home:'#viewList', fav:'#viewList', tools:'#viewTools', learn:'#viewLearn', gen:'#viewGen'};
+function setTab(tab){
+  state.tab = tab;
+  document.querySelectorAll('nav button').forEach(x => x.classList.toggle('on', x.dataset.tab === tab));
+  Object.values(views).forEach(v => $(v).classList.add('hide'));
+  $(views[tab]).classList.remove('hide');
+  $('#about').classList.toggle('hide', false);
+  if(tab === 'home' || tab === 'fav') renderList();
+  scrollTo({top:0});
+}
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => setTab(b.dataset.tab));
+
+/* ---------- tools guide ---------- */
+const FT = {free:['g','ফ্রি'], limited:['a','ফ্রি (সীমিত)'], paid:['r','পেইড']};
+function renderTasks(){
+  $('#taskList').innerHTML = EXTRA.tasks.map((t, i) =>
+    `<button class="task" data-task="${i}"><div><b>${esc(t.task)}</b><span>${esc(t.bn)}</span></div></button>`).join('');
+}
+function renderFreeRail(){
+  const opts = [['', 'সব'], ['free', 'ফ্রি'], ['limited', 'ফ্রি (সীমিত)'], ['paid', 'পেইড']];
+  $('#freeRail').innerHTML = opts.map(o => `<button class="chip cat${state.freeF === o[0] ? ' on' : ''}" data-f="${o[0]}">${o[1]}</button>`).join('');
+}
+function renderGuide(){
+  const items = EXTRA.guide.filter(g => !state.freeF || g.freeType === state.freeF);
+  $('#guideList').innerHTML = items.map(g => {
+    const t = toolMap[g.id], f = FT[g.freeType];
+    const n = DATA.prompts.filter(p => p.tool === g.id).length;
+    return `<article class="card" data-g="${g.id}">
+      <div class="card-head">${badge(t, true)}<div class="meta"><div style="font-weight:700;font-size:15px">${esc(t.name)}</div>
+      <div class="tags"><span class="tag ${f[0]}">${f[1]}</span></div></div></div>
+      <div class="kv"><b>কীসে সেরা:</b> ${esc(g.best)}</div>
+      <div class="kv"><b>ফ্রি না পেইড:</b> ${esc(g.free)}</div>
+      <div class="kv"><b>কীভাবে শুরু করবেন:</b></div>
+      <ol class="steps">${g.start.map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+      <div class="actions"><a class="btn ghost" style="flex:1" href="${esc(g.url)}" target="_blank" rel="noopener noreferrer">🌐 অফিসিয়াল সাইট</a><button class="btn" data-ptool="${g.id}">${bnNum(n)}টি প্রম্পট দেখুন</button></div>
+    </article>`;
+  }).join('') || '<div class="empty">কোনো টুল নেই</div>';
+}
+function renderNews(){
+  $('#newsList').innerHTML = EXTRA.news.map(n =>
+    `<article class="card news"><small>${esc(n.date)}</small><h4>${esc(n.title)}</h4><p>${esc(n.text)}</p><a href="${esc(n.src)}" target="_blank" rel="noopener noreferrer">সূত্র দেখুন ↗</a></article>`).join('');
+}
+$('#taskList').onclick = e => {
+  const b = e.target.closest('[data-task]'); if(!b) return;
+  const t = EXTRA.tasks[b.dataset.task];
+  state.freeF = ''; renderFreeRail();
+  const ids = new Set(t.tools);
+  $('#guideList').innerHTML = '';
+  const order = EXTRA.guide.filter(g => ids.has(g.id)).sort((a, c) => t.tools.indexOf(a.id) - t.tools.indexOf(c.id));
+  const saved = EXTRA.guide; EXTRA.guide = order; renderGuide(); EXTRA.guide = saved;
+  $('#guideList').scrollIntoView({behavior:'smooth', block:'start'});
+  toast(t.task + ' – সেরা টুলগুলো দেখানো হচ্ছে');
+};
+$('#freeRail').onclick = e => { const b = e.target.closest('button'); if(!b) return; state.freeF = b.dataset.f; renderFreeRail(); renderGuide(); };
+$('#guideList').onclick = e => {
+  const b = e.target.closest('[data-ptool]'); if(!b) return;
+  state.tool = b.dataset.ptool; state.cat = ''; setQuery(''); renderRails(); setTab('home');
+};
+
+/* ---------- learn ---------- */
+function renderLessons(){
+  const total = EXTRA.lessons.length, done = EXTRA.lessons.filter(l => state.done.has(l.id)).length;
+  $('#progText').textContent = `${bnNum(done)}/${bnNum(total)}টি পাঠ সম্পন্ন`;
+  $('#progBar').style.width = (done / total * 100) + '%';
+  const openId = renderLessons.open;
+  $('#lessonList').innerHTML = EXTRA.lessons.map((l, i) => {
+    const isDone = state.done.has(l.id), open = openId === l.id;
+    return `<article class="card" data-l="${l.id}">
+      <button class="lesson-h${isDone ? ' done' : ''}" data-toggle="${l.id}"><span class="num">${isDone ? '✓' : bnNum(i + 1)}</span><b>${esc(l.title)}</b><span>${open ? '▴' : '▾'}</span></button>
+      ${open ? `<div class="lesson-b"><ul>${l.body.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+        <div class="kv"><b>উদাহরণ প্রম্পট:</b></div>
+        <div class="prompt open ex">${esc(l.example)}</div>
+        <div class="kv"><b>অনুশীলন:</b> ${esc(l.task)}</div>
+        <div class="actions" style="margin-top:10px"><button class="btn green" data-lcopy="${l.id}">📋 উদাহরণ কপি</button><button class="btn" data-ldone="${l.id}">${isDone ? '↩ অসম্পন্ন করুন' : '✔ সম্পন্ন'}</button></div></div>` : ''}
+    </article>`;
+  }).join('');
+}
+$('#lessonList').onclick = e => {
+  const tg = e.target.closest('[data-toggle]'), cp = e.target.closest('[data-lcopy]'), dn = e.target.closest('[data-ldone]');
+  if(tg){ renderLessons.open = renderLessons.open === tg.dataset.toggle ? null : tg.dataset.toggle; renderLessons(); }
+  else if(cp){ copyText(EXTRA.lessons.find(l => l.id === cp.dataset.lcopy).example); }
+  else if(dn){
+    const id = dn.dataset.ldone;
+    state.done.has(id) ? state.done.delete(id) : state.done.add(id);
+    store.set('aph_done', [...state.done]); renderLessons();
+    if(state.done.size === EXTRA.lessons.length) toast('🎉 সব পাঠ শেষ! অভিনন্দন');
+  }
+};
+
+/* ---------- generator ---------- */
+$('#genCat').innerHTML = DATA.categories.map(c => `<option value="${c.id}">${c.icon} ${esc(c.bn)}</option>`).join('');
+let genText = '';
+$('#genBtn').onclick = () => {
+  const req = $('#genReq').value.trim();
+  if(!req){ toast('আগে আপনার চাহিদা লিখুন'); return; }
+  const cat = $('#genCat').value;
+  const base = DATA.prompts.find(p => p.cat === cat && p.type === 'master' && p.tool !== 'all') || DATA.prompts.find(p => p.cat === cat) || DATA.prompts[0];
+  genText = `${base.prompt}\n\n---\nআমার চাহিদা / My request:\n${req}\n\n(উপরের [ ] অংশগুলো আমার চাহিদা অনুযায়ী পূরণ করো। কিছু অস্পষ্ট থাকলে আগে প্রশ্ন করো।)`;
+  $('#genText').textContent = genText;
+  $('#genOut').classList.remove('hide');
+  $('#genOut').scrollIntoView({behavior:'smooth', block:'start'});
+};
+$('#genCopy').onclick = () => copyText(genText);
+$('#genGpt').onclick = () => { copyText(genText); window.open('https://chatgpt.com/?q=' + encodeURIComponent(genText.slice(0, 1800)), '_blank', 'noopener'); };
+
+/* ---------- add own prompt ---------- */
+$('#aTool').innerHTML = DATA.tools.map(t => `<option value="${t.id}">${esc(t.name)}</option>`).join('');
+$('#aCat').innerHTML = DATA.categories.map(c => `<option value="${c.id}">${c.icon} ${esc(c.bn)}</option>`).join('');
+$('#addBtn').onclick = () => openSheet('addSheet');
+$('#aCancel').onclick = closeSheets;
+$('#aSave').onclick = () => {
+  const title = $('#aTitle').value.trim(), text = $('#aText').value.trim();
+  if(!title || !text){ toast('নাম ও প্রম্পট দুটোই লিখুন'); return; }
+  state.mine.unshift({id:'my_' + Date.now(), title, text, tool:$('#aTool').value, cat:$('#aCat').value});
+  store.set('aph_mine', state.mine); rebuildAll();
+  $('#aTitle').value = ''; $('#aText').value = '';
+  closeSheets(); toast('💾 সেভ হয়েছে (আমার ট্যাবে দেখুন)');
+  renderList();
+};
+
+/* ---------- sheets ---------- */
+const scrim = $('#scrim');
+function openSheet(id){ closeSheets(true); $('#' + id).classList.add('show'); scrim.classList.add('show'); }
+function closeSheets(keepScrim){
+  stopListening();
+  document.querySelectorAll('.sheet').forEach(s => s.classList.remove('show'));
+  if(keepScrim !== true) scrim.classList.remove('show');
+}
+scrim.onclick = () => closeSheets();
+
+/* ---------- voice ---------- */
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+let rec = null, listening = false, wantListen = false, finalText = '', voiceTarget = 'search', vLang = store.get('aph_vlang', 'bn-BD'), restarts = 0;
+function setStatus(live, msg){ $('#vMic').classList.toggle('live', live); $('#vStatus').textContent = msg; }
+function syncLang(){ document.querySelectorAll('#vLang button').forEach(b => b.classList.toggle('on', b.dataset.l === vLang)); }
+function openVoice(target){
+  if(!SR){ toast('এই ব্রাউজারে ভয়েস চলে না। Chrome ব্যবহার করুন'); return; }
+  voiceTarget = target; $('#vText').value = ''; finalText = ''; syncLang();
+  openSheet('voiceSheet'); startListening();
+}
+function startListening(){
+  if(listening) return;
+  wantListen = true; restarts = 0;
+  const base = $('#vText').value.trim();
+  finalText = base ? base + ' ' : '';
+  launch();
+}
+function launch(){
+  rec = new SR();
+  rec.lang = vLang; rec.interimResults = true; rec.continuous = true;
+  rec.onstart = () => { listening = true; setStatus(true, 'শুনছি… বলুন'); };
+  rec.onresult = ev => {
+    let interim = '';
+    for(let i = ev.resultIndex; i < ev.results.length; i++){
+      const r = ev.results[i];
+      if(r.isFinal) finalText += r[0].transcript + ' '; else interim += r[0].transcript;
+    }
+    $('#vText').value = (finalText + interim).trim();
+  };
+  rec.onerror = ev => {
+    if(ev.error === 'no-speech' || ev.error === 'aborted') return;
+    wantListen = false; listening = false;
+    const m = {'not-allowed':'মাইক্রোফোনের অনুমতি দিন','service-not-allowed':'মাইক্রোফোনের অনুমতি দিন','network':'ইন্টারনেট সংযোগ দেখুন','audio-capture':'মাইক পাওয়া যায়নি'}[ev.error] || 'সমস্যা হয়েছে, আবার চেষ্টা করুন';
+    setStatus(false, m);
+  };
+  rec.onend = () => {
+    listening = false;
+    if(wantListen && restarts < 6){ restarts++; setTimeout(() => { if(wantListen) launch(); }, 200); }
+    else if(wantListen){ wantListen = false; setStatus(false, 'থেমে গেছে। দরকার হলে 🎤 চেপে আবার বলুন'); }
+  };
+  try{ rec.start(); }catch(e){}
+}
+function stopListening(){
+  wantListen = false;
+  if(rec){ try{ rec.stop(); }catch(e){} }
+  listening = false; $('#vMic').classList.remove('live');
+}
+$('#vMic').onclick = () => { if(wantListen){ stopListening(); setStatus(false, 'থামানো হয়েছে। ঠিক করে ✔ পাঠান চাপুন'); } else startListening(); };
+$('#vLang').onclick = e => { const b = e.target.closest('button'); if(!b) return; vLang = b.dataset.l; store.set('aph_vlang', vLang); syncLang(); if(wantListen){ stopListening(); setTimeout(startListening, 250); } };
+$('#vCancel').onclick = () => closeSheets();
+$('#vClear').onclick = () => { $('#vText').value = ''; finalText = ''; };
+$('#vSend').onclick = () => {
+  const text = $('#vText').value.trim();
+  closeSheets();
+  if(!text) return;
+  if(voiceTarget === 'search'){ if(state.tab !== 'home' && state.tab !== 'fav') setTab('home'); setQuery(text, true); toast('🔍 সার্চ হচ্ছে: ' + text); }
+  else { const g = $('#genReq'); g.value = (g.value ? g.value.trim() + ' ' : '') + text; }
+};
+$('#micMain').onclick = () => openVoice('search');
+$('#micGen').onclick  = () => openVoice('gen');
+
+/* ---------- about ---------- */
+$('#about').innerHTML = `<h5>তৈরি করেছেন ${esc(EXTRA.owner.name)}</h5>
+  <p>নতুন প্রম্পট ও টিপসের জন্য আমাদের ফলো করুন</p>
+  <div class="follow">${EXTRA.owner.links.map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener noreferrer" style="background:${l.color}"><span>${l.icon}</span>${esc(l.label)}</a>`).join('')}</div>`;
+
+/* ---------- init ---------- */
+renderRails(); renderPop(); renderList(); renderTasks(); renderFreeRail(); renderGuide(); renderNews(); renderLessons();
+</script>
+</body>
+</html>
